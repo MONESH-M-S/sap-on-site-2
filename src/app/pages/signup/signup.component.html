@@ -1,0 +1,181 @@
+<p-toast></p-toast>
+<section>
+  <p-card>
+    <div class="surface-section px-4 py-2 md:px-6 lg:px-6">
+      <h1
+        class="text-center font-semibold mb-4 fadeinup animation-duration-500"
+      >
+        Account Registration Form
+      </h1>
+      <div class="grid">
+        <div class="col-12">
+          <form [formGroup]="signupForm">
+            <div class="grid formgrid p-fluid">
+              <div
+                class="field mb-4 col-12 md:col-6 fadeinup animation-duration-500"
+              >
+                <label for="name" class="font-medium text-900">Name</label>
+                <input
+                  id="name"
+                  type="text"
+                  pinputtext
+                  placeholder="John Doe"
+                  class="p-inputtext p-component p-element"
+                  formControlName="name"
+                  autofocus
+                />
+              </div>
+              <div
+                class="field mb-4 col-12 md:col-6 fadeinup animation-duration-500"
+              >
+                <label for="rollno" class="font-medium text-900">
+                  Roll Number
+                </label>
+                <input
+                  id="rollno"
+                  type="text"
+                  pinputtext
+                  placeholder="Nominal Number"
+                  formControlName="rollno"
+                  class="p-inputtext p-component p-element"
+                />
+              </div>
+              <div
+                class="field mb-4 col-12 md:col-6 fadeinup animation-duration-500"
+              >
+                <label for="email" class="font-medium text-900">
+                  Kongu Email
+                </label>
+                <input
+                  id="email"
+                  type="text"
+                  placeholder="example@kongu.edu"
+                  pinputtext
+                  formControlName="email"
+                  class="p-inputtext p-component p-element"
+                />
+              </div>
+              <div
+                class="field mb-4 col-12 md:col-6 fadeinup animation-duration-500"
+              >
+                <label for="password" class="font-medium text-900">
+                  Password
+                </label>
+                <input
+                  id="password"
+                  type="password"
+                  placeholder="password"
+                  pinputtext
+                  formControlName="password"
+                  class="p-inputtext p-component p-element"
+                />
+              </div>
+              <div
+                class="field mb-4 col-12 md:col-6 fadeinup animation-duration-500"
+              >
+                <label for="depatment" class="font-medium text-900">
+                  Department
+                </label>
+                <p-dropdown
+                  [options]="availableDepartments"
+                  optionValue="value"
+                  placeholder="Select your deparment"
+                  optionLabel="label"
+                  [showClear]="true"
+                  formControlName="department"
+                  id="depatment"
+                ></p-dropdown>
+              </div>
+              <div
+                class="field mb-4 col-12 md:col-6 fadeinup animation-duration-500"
+              >
+                <label for="mentor" class="font-medium text-900">Mentor</label>
+                <p-dropdown
+                  [options]="availaleMentors"
+                  placeholder="Select your mentor"
+                  formControlName="mentor"
+                  optionLabel="label"
+                  optionValue="label"
+                  [showClear]="true"
+                  [filter]="true"
+                  filterBy="label"
+                  id="mentor"
+                  [group]="true"
+                >
+                  <ng-template let-group pTemplate="group">
+                    <div class="flex align-items-center">
+                      <span>{{ group.label }}</span>
+                    </div>
+                  </ng-template>
+                </p-dropdown>
+              </div>
+              <div
+                class="field mb-4 col-12 md:col-6 fadeinup animation-duration-500"
+              >
+                <label for="year" class="font-medium text-900">Year</label>
+                <p-dropdown
+                  [options]="year"
+                  placeholder="Select year of study"
+                  [showClear]="true"
+                  id="year"
+                  formControlName="year"
+                ></p-dropdown>
+              </div>
+              <div class="field mb-4 col-12 fadeinup animation-duration-500">
+                <label for="avatar" class="font-medium text-900"
+                  >Profile Image</label
+                >
+                <div class="flex align-items-center">
+                  <img
+                    [src]="imageDisplay"
+                    class="w-3 md:w-2 lg:w-1 border-round-2xl mr-4"
+                  />
+                  <p-fileUpload
+                    #fubauto
+                    mode="basic"
+                    name="demo"
+                    accept="image/*"
+                    [maxFileSize]="2000000"
+                    [customUpload]="true"
+                    (uploadHandler)="onUpload($event)"
+                    chooseLabel="Upload Scrap Image"
+                    [auto]="true"
+                    chooseLabel="Upload Image"
+                    class="mr-2"
+                    [disabled]="editMode"
+                  ></p-fileUpload>
+                </div>
+              </div>
+              <div class="col-12 mt-5 ml-4">
+                <button
+                  pButton
+                  style="
+                    height: 45px;
+                    width: 145px;
+                    top: -53.7px;
+                    left: -26.7px;
+                  "
+                  class="mt-3 w-auto"
+                  color="primary"
+                  [disabled]="signupForm.invalid"
+                  (click)="onSubmit()"
+                  *ngIf="!isLoading"
+                >
+                  Create Account
+                </button>
+                <p-progressSpinner
+                  [style]="{ width: '50px', height: '50px' }"
+                  styleClass="custom-spinner"
+                  strokeWidth="8"
+                  fill="var(--surface-ground)"
+                  animationDuration=".5s"
+                  *ngIf="isLoading"
+                ></p-progressSpinner>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </p-card>
+</section>
