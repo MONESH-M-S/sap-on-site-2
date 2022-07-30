@@ -15,7 +15,7 @@
     "lib": ["es2018", "dom"],
     "paths": {
       "@component/*": ["src/app/component/*"],
-      "@page/*": ["src/app/page/*"],
+      "@page/*": ["src/app/pages/*"],
       "@models/*": ["src/app/models/*"],
       "@data": ["src/app/data/*"],
       "@service/*": ["src/app/service/*"],

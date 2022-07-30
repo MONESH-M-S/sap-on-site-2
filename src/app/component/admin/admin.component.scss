@@ -1,0 +1,16 @@
+section {
+  min-height: 100%;
+  background-color: #eff3f8;
+  position: relative;
+  width: 100%;
+
+  .tools {
+    width: 60%;
+    margin: auto;
+    background-color: #fff;
+    position: fixed;
+    left: 50%;
+    bottom: 10px;
+    transform: translate(-50%, -50%);
+  }
+}

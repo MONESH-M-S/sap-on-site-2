@@ -3,13 +3,14 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminModule } from '@component/admin/admin.module';
 import { MessageService } from 'primeng/api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserModule } from './component/user/user.module';
-import { LoginComponent } from './pages/login/login.component';
-import { SignupComponent } from './pages/signup/signup.component';
+import { UserModule } from '@component/user/user.module';
+import { LoginComponent } from '@page/login/login.component';
+import { SignupComponent } from '@page/signup/signup.component';
 import { PrimengModule } from './primeng.module';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { PrimengModule } from './primeng.module';
     PrimengModule,
     HttpClientModule,
     UserModule,
+    AdminModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

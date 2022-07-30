@@ -1,8 +1,8 @@
 export interface User {
   name?: string;
-  email: string;
+  email?: string;
   rollno?: string;
-  password: string;
+  password?: string;
   department?: string;
   mentor?: string;
   year?: string;
