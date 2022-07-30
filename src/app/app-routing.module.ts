@@ -9,12 +9,17 @@ const routes: Routes = [
   {
     path: 'u',
     loadChildren: () =>
-      import('./component/user/user.module').then((m) => m.UserModule),
+      import('@component/user/user.module').then((m) => m.UserModule),
   },
   {
-    path: 'a',
+    path: 'm',
     loadChildren: () =>
-      import('./component/admin/admin.module').then((m) => m.AdminModule),
+      import('@component/admin/admin.module').then((m) => m.AdminModule),
+  }, 
+  {
+    path: 'u/:uid/a',
+    loadChildren: () =>
+      import('@page/activity/activity.module').then((m) => m.ActivityModule),
   }, 
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];

@@ -12,9 +12,14 @@ import { UserModule } from '@component/user/user.module';
 import { LoginComponent } from '@page/login/login.component';
 import { SignupComponent } from '@page/signup/signup.component';
 import { PrimengModule } from './primeng.module';
+import { ActivityModule } from '@page/activity/activity.module';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SignupComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    SignupComponent, 
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -24,7 +29,8 @@ import { PrimengModule } from './primeng.module';
     PrimengModule,
     HttpClientModule,
     UserModule,
-    AdminModule
+    AdminModule,
+    ActivityModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
