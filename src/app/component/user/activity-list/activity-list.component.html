@@ -1,0 +1,94 @@
+<section>
+  <div *ngIf="userActivity.length > 0" class="card hidden lg:block">
+    <p-table
+      [value]="userActivity"
+      [scrollable]="true"
+      scrollHeight="450px"
+      styleClass="p-datatable-gridlines"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th pSortableColumn="mark" class="hidden xl:block">
+            Mark <p-sortIcon field="mark"></p-sortIcon>
+          </th>
+          <th pSortableColumn="uploadedTime" class="hidden xl:block">
+            Added On<p-sortIcon field="uploadedTime"></p-sortIcon>
+          </th>
+          <th>Cretificate</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-activity>
+        <tr>
+          <td>
+            {{ activity.eventName | titlecase }}
+            {{ activity.clubName | titlecase }}
+            {{ activity.courseName | titlecase }}
+          </td>
+          <td class="hidden xl:block">
+            {{ activity.mark }}
+          </td>
+          <td>
+            {{ activity.uploadedTime | date: "dd-MM-yyyy hh:mm" }}
+          </td>
+          <td>
+            <img
+              [src]="activity.image"
+              [width]="50"
+              alt="Cretificate"
+            />
+          </td>
+          <td>
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-eye"
+              class="p-button-rounded p-button-info p-button-outlined mr-3"
+              pTooltip="View Activity"
+            ></button>
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-pencil"
+              class="p-button-rounded p-button-success p-button-outlined mr-3"
+              pTooltip="Edit Activity"
+              [routerLink]="activity.type"
+              [queryParams]="{
+                edit: true,
+                activityId: activity._id
+              }"
+              *ngIf="activity.isLocked === false"
+            ></button>
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-danger p-button-outlined mr-3"
+              pTooltip="Delete Activity"
+              *ngIf="activity.isLocked === false"
+              (click)="deleteActivity(activity._id)"
+            ></button>
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-lock"
+              class="p-button-rounded p-button-help p-button-outlined mr-3"
+              pTooltip="Activity is Locked by your Mentor"
+              *ngIf="activity.isLocked === true"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="mt-5">
+    <h1 class="block lg:hidden mt-5 text-center font-semibold">
+      Use Larger Screen to View Your Activities!
+    </h1>
+  </div>
+</section>

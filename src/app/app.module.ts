@@ -7,6 +7,7 @@ import { MessageService } from 'primeng/api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { UserModule } from './component/user/user.module';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { PrimengModule } from './primeng.module';
@@ -21,6 +22,7 @@ import { PrimengModule } from './primeng.module';
     ReactiveFormsModule,
     PrimengModule,
     HttpClientModule,
+    UserModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

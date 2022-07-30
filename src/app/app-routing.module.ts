@@ -6,6 +6,11 @@ import { SignupComponent } from './pages/signup/signup.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  {
+    path: 'u',
+    loadChildren: () =>
+      import('./component/user/user.module').then((m) => m.UserModule),
+  },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 
@@ -13,5 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-
 export class AppRoutingModule {}
