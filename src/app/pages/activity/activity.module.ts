@@ -17,9 +17,46 @@ import { TechnoManagerialComponent } from './techno-managerial/techno-managerial
 import { VoluntaryComponent } from './voluntary/voluntary.component';
 import { WorkshopComponent } from './workshop/workshop.component';
 import { ActivityComponent } from './activity.component';
+import { VacComponent } from './vac/vac.component';
 
 const routes: Routes = [
-  {path: '', component: ActivityComponent}
+  {
+    path: '',
+    component: ActivityComponent,
+    children: [
+      { path: 'paper', component: PaperComponent, outlet: 'activitiesRoute' },
+      {
+        path: 'project',
+        component: ProjectComponent,
+        outlet: 'activitiesRoute',
+      },
+      { path: 'club', component: ClubComponent, outlet: 'activitiesRoute' },
+      {
+        path: 'workshop',
+        component: WorkshopComponent,
+        outlet: 'activitiesRoute',
+      },
+      { path: 'nptel', component: NptelComponent, outlet: 'activitiesRoute' },
+      { path: 'vac', component: VacComponent, outlet: 'activitesRoute' },
+      {
+        path: 'techno-managerial',
+        component: TechnoManagerialComponent,
+        outlet: 'activitesRoute',
+      },
+      { path: 'ncc-nss', component: NccNssComponent, outlet: 'activitesRoute' },
+      {
+        path: 'project-paper',
+        component: ProjectPaperComponent,
+        outlet: 'activitesRoute',
+      },
+      { path: 'sports', component: SportsComponent, outlet: 'activitesRoute' },
+      {
+        path: 'voluntary',
+        component: VoluntaryComponent,
+        outlet: 'activitesRoute',
+      },
+    ],
+  },
 ];
 
 @NgModule({
@@ -37,6 +74,7 @@ const routes: Routes = [
     InternComponent,
     NccNssComponent,
     VoluntaryComponent,
+    VacComponent,
   ],
   imports: [CommonModule, PrimengModule, RouterModule.forChild(routes)],
 })

@@ -18,7 +18,7 @@ import { ActivityModule } from '@page/activity/activity.module';
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent, 
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
