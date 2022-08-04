@@ -6,7 +6,6 @@
   </div>
   <div class="flex relative lg:static p-5 flex-auto">
     <div
-      id="app-sidebar-12"
       class="surface-card lg:block flex-shrink-0 absolute lg:static left-0 top-0 z-1 select-none shadow-2 hidden"
       style="width: 280px; border-radius: 12px"
     >
@@ -17,19 +16,22 @@
               <div
                 class="p-3 flex align-items-center justify-content-between text-600"
               >
-                <span class="font-medium text-sm text-900 mt-2"
-                  >ACTIVITY LIST</span
-                >
+                <span class="font-medium text-sm text-900 mt-2">
+                  ACTIVITY LIST
+                </span>
               </div>
-              <ul class="list-none p-0 m-0 overflow-hidden">
-                <li>
+              <ul
+                class="list-none p-0 m-0 overflow-hidden fadeinup animation-duration-500"
+              >
+                <li *ngFor="let activity of activities">
                   <a
-                    pripple=""
-                    routerLink="paper"
+                    pripple
+                    [routerLink]="activity.route"
+                    routerLinkActive="text-purple-600 border-right-2 border-purple-500 transition-colors transition-duration-150"
                     class="p-ripple p-element flex align-items-center cursor-pointer p-3 text-700 hover:surface-100 transition-duration-150 transition-colors border-right-2 border-transparent"
                   >
-                    <i class="pi pi-file mr-2"></i>
-                    <span class="font-medium">Paper Presentation</span>
+                    <i class="pi mr-2" [ngClass]="'pi-' + activity.icon"></i>
+                    <span class="font-medium">{{ activity.label }}</span>
                     <span
                       class="p-ink"
                       style="
@@ -41,187 +43,13 @@
                     ></span>
                   </a>
                 </li>
-                <li>
-                  <a
-                    pripple=""
-                    routerLink="project"
-                    class="p-ripple p-element flex align-items-center cursor-pointer p-3 text-700 hover:surface-100 transition-duration-150 transition-colors border-right-2 border-transparent"
-                  >
-                    <i class="pi pi-cog mr-2"></i>
-                    <span class="font-medium">Project Presentation</span>
-                    <span
-                      class="p-ink"
-                      style="
-                        height: 248px;
-                        width: 248px;
-                        top: -114px;
-                        left: 4px;
-                      "
-                    ></span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    pripple=""
-                    routerLink="club"
-                    class="p-ripple p-element flex align-items-center cursor-pointer p-3 text-700 hover:surface-100 transition-duration-150 transition-colors border-right-2 border-transparent"
-                  >
-                    <i class="pi pi-users mr-2"></i>
-                    <span class="font-medium">Club</span>
-                    <span
-                      class="p-ink"
-                      style="
-                        height: 248px;
-                        width: 248px;
-                        top: -88px;
-                        left: 32px;
-                      "
-                    ></span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    pripple=""
-                    routerLink="workshop"
-                    class="p-ripple p-element flex align-items-center cursor-pointer p-3 text-700 hover:surface-100 transition-duration-150 transition-colors border-right-2 border-transparent"
-                  >
-                    <i class="pi pi-th-large mr-2"></i>
-                    <span class="font-medium">Workshop</span>
-                    <span
-                      class="p-ink"
-                      style="
-                        height: 248px;
-                        width: 248px;
-                        top: -95px;
-                        left: 42px;
-                      "
-                    ></span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    pripple=""
-                    routerLink="nptel"
-                    class="p-ripple p-element flex align-items-center cursor-pointer p-3 text-700 hover:surface-100 transition-duration-150 transition-colors border-right-2 border-transparent"
-                  >
-                    <i class="pi pi-folder-open mr-2"></i>
-                    <span class="font-medium">NPTEL</span>
-                    <span
-                      class="p-ink"
-                      style="
-                        height: 248px;
-                        width: 248px;
-                        top: -85px;
-                        left: 28px;
-                      "
-                    >
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    pripple=""
-                    routerLink="vac"
-                    class="p-ripple p-element flex align-items-center cursor-pointer p-3 text-700 hover:surface-100 transition-duration-150 transition-colors border-right-2 border-transparent"
-                  >
-                    <i class="pi pi-folder-open mr-2"></i>
-                    <span class="font-medium">Value Added Course</span>
-                    <span
-                      class="p-ink"
-                      style="
-                        height: 248px;
-                        width: 248px;
-                        top: -85px;
-                        left: 28px;
-                      "
-                    >
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    pripple=""
-                    routerLink="techno-managerial"
-                    class="p-ripple p-element flex align-items-center cursor-pointer p-3 text-700 hover:surface-100 transition-duration-150 transition-colors border-right-2 border-transparent"
-                  >
-                    <i class="pi pi-slack mr-2"></i>
-                    <span class="font-medium">Techo Managerial Events</span>
-                    <span class="p-ink"></span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    pripple=""
-                    routerLink="placement"
-                    class="p-ripple p-element flex align-items-center cursor-pointer p-3 text-700 hover:surface-100 transition-duration-150 transition-colors border-right-2 border-transparent"
-                  >
-                    <i class="pi pi-desktop mr-2"></i>
-                    <span class="font-medium">Placement</span>
-                    <span class="p-ink"></span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    pripple=""
-                    routerLink="intern"
-                    class="p-ripple p-element flex align-items-center cursor-pointer p-3 text-700 hover:surface-100 transition-duration-150 transition-colors border-right-2 border-transparent"
-                  >
-                    <i class="pi pi-envelope mr-2"></i>
-                    <span class="font-medium">Internship</span>
-                    <span class="p-ink"></span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    pripple=""
-                    routerLink="ncc-nss"
-                    class="p-ripple p-element flex align-items-center cursor-pointer p-3 text-700 hover:surface-100 transition-duration-150 transition-colors border-right-2 border-transparent"
-                  >
-                    <i class="pi pi-inbox mr-2"></i>
-                    <span class="font-medium">NCC / NSS</span>
-                    <span class="p-ink"></span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    pripple=""
-                    routerLink="project-paper"
-                    class="p-ripple p-element flex align-items-center cursor-pointer p-3 text-700 hover:surface-100 transition-duration-150 transition-colors border-right-2 border-transparent"
-                  >
-                    <i class="pi pi-briefcase mr-2"></i>
-                    <span class="font-medium">Project to Paper</span>
-                    <span class="p-ink"></span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    pripple=""
-                    routerLink="sports"
-                    class="p-ripple p-element flex align-items-center cursor-pointer p-3 text-700 hover:surface-100 transition-duration-150 transition-colors border-right-2 border-transparent"
-                  >
-                    <i class="pi pi-cog mr-2"></i>
-                    <span class="font-medium">Sports</span>
-                    <span class="p-ink"></span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    pripple=""
-                    routerLink="voluntary"
-                    class="p-ripple p-element flex align-items-center cursor-pointer p-3 text-700 hover:surface-100 transition-duration-150 transition-colors border-right-2 border-transparent"
-                  >
-                    <i class="pi pi-cog mr-2"></i>
-                    <span class="font-medium">Voluntary Works</span>
-                    <span class="p-ink"></span>
-                  </a>
-                </li>
               </ul>
             </li>
           </ul>
         </div>
         <div class="mt-auto border-top-1 surface-border text-center">
           <a
-            pripple=""
+            pripple
             (click)="location.back()"
             class="p-ripple p-element cursor-pointer p-3 inline-flex align-items-center justify-content-center text-pink-600 text-600 transition-colors transition-duration-150"
           >
@@ -234,10 +62,13 @@
     </div>
     <div class="flex flex-column flex-auto">
       <div
-        class="border-2 border-dashed surface-border border-round surface-section flex-auto lg:ml-5"
+        class="border-2 border-dashed surface-border border-round surface-section flex-auto lg:ml-5 hidden lg:block"
       >
-        <router-outlet name="activitiesRoute"></router-outlet>
+        <router-outlet></router-outlet>
       </div>
+      <h2 class="block lg:hidden mx-3 mt-4 text-center">
+        Please use larger screen to upload activites!
+      </h2>
     </div>
   </div>
 </div>

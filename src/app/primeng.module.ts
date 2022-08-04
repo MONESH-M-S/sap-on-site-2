@@ -14,6 +14,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { CardModule } from 'primeng/card';
     TooltipModule,
     InputTextareaModule,
     CalendarModule,
-    CardModule
+    CardModule,
+    InputNumberModule,
   ],
   exports: [
     InputTextModule,
@@ -46,8 +48,8 @@ import { CardModule } from 'primeng/card';
     TooltipModule,
     InputTextareaModule,
     CalendarModule,
-    CardModule
+    CardModule,
+    InputNumberModule,
   ],
 })
-
 export class PrimengModule {}

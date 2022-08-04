@@ -7,21 +7,22 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   {
-    path: 'u',
+    path: 'user',
     loadChildren: () =>
       import('@component/user/user.module').then((m) => m.UserModule),
   },
   {
-    path: 'm',
+    path: 'mentor',
     loadChildren: () =>
       import('@component/admin/admin.module').then((m) => m.AdminModule),
-  }, 
+  },
   {
-    path: 'u/:uid/a',
+    path: 'user/:uid/activity',
     loadChildren: () =>
       import('@page/activity/activity.module').then((m) => m.ActivityModule),
-  }, 
+  },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', component: LoginComponent },
 ];
 
 @NgModule({

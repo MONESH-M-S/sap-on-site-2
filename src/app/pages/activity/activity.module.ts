@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { PrimengModule } from 'src/app/primeng.module';
-import { RouterModule, Routes } from '@angular/router';
 
 import { ClubComponent } from './club/club.component';
 import { InternComponent } from './intern/intern.component';
@@ -18,46 +16,8 @@ import { VoluntaryComponent } from './voluntary/voluntary.component';
 import { WorkshopComponent } from './workshop/workshop.component';
 import { ActivityComponent } from './activity.component';
 import { VacComponent } from './vac/vac.component';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: ActivityComponent,
-    children: [
-      { path: 'paper', component: PaperComponent, outlet: 'activitiesRoute' },
-      {
-        path: 'project',
-        component: ProjectComponent,
-        outlet: 'activitiesRoute',
-      },
-      { path: 'club', component: ClubComponent, outlet: 'activitiesRoute' },
-      {
-        path: 'workshop',
-        component: WorkshopComponent,
-        outlet: 'activitiesRoute',
-      },
-      { path: 'nptel', component: NptelComponent, outlet: 'activitiesRoute' },
-      { path: 'vac', component: VacComponent, outlet: 'activitesRoute' },
-      {
-        path: 'techno-managerial',
-        component: TechnoManagerialComponent,
-        outlet: 'activitesRoute',
-      },
-      { path: 'ncc-nss', component: NccNssComponent, outlet: 'activitesRoute' },
-      {
-        path: 'project-paper',
-        component: ProjectPaperComponent,
-        outlet: 'activitesRoute',
-      },
-      { path: 'sports', component: SportsComponent, outlet: 'activitesRoute' },
-      {
-        path: 'voluntary',
-        component: VoluntaryComponent,
-        outlet: 'activitesRoute',
-      },
-    ],
-  },
-];
+import { ReactiveFormsModule } from '@angular/forms';
+import { ActivityRoutingModule } from './activity-routing.module';
 
 @NgModule({
   declarations: [
@@ -76,6 +36,11 @@ const routes: Routes = [
     VoluntaryComponent,
     VacComponent,
   ],
-  imports: [CommonModule, PrimengModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    PrimengModule,
+    ActivityRoutingModule,
+    ReactiveFormsModule,
+  ],
 })
 export class ActivityModule {}
