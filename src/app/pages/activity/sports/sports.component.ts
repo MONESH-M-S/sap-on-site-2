@@ -36,7 +36,7 @@ export class SportsComponent implements OnInit {
       eventName: ['', Validators.required],
       eventVenue: ['', Validators.required],
       sportName: ['', Validators.required],
-      level: ['', Validators.required],
+      eventLevel: ['', Validators.required],
       position: ['', Validators.required],
       eventDateRange: ['', Validators.required],
       prizeAmount: [''],

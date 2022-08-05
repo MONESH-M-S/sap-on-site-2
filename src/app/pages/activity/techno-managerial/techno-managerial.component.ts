@@ -27,7 +27,7 @@ export class TechnoManagerialComponent implements OnInit {
     this.technoForm = this.formBuilder.group({
       eventName: ['', Validators.required],
       eventVenue: ['', Validators.required],
-      mode: ['', Validators.required],
+      type: ['', Validators.required],
       title: ['', Validators.required],
       eventLevel: ['', Validators.required],
       eventDate: [new Date(), Validators.required],

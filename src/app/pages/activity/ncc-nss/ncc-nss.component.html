@@ -1,10 +1,11 @@
 <section class="mt-8">
   <div class="surface-card p-4">
-    <div class="grid formgrid p-fluid">
+    <form [formGroup]=""nccForm class="grid formgrid p-fluid">
       <div class="field mb-4 col-6">
         <label for="eventName" class="font-medium text-900">Event Name</label>
         <input
           id="eventName"
+          formControlName="eventName"
           type="text"
           pinputtext
           class="p-inputtext p-component p-element"
@@ -16,6 +17,7 @@
         </label>
         <input
           id="eventVenue"
+          formControlName="eventVenue"
           type="text"
           pinputtext
           class="p-inputtext p-component p-element"
@@ -25,6 +27,7 @@
         <label for="position" class="font-medium text-900">Position in NSS/NCC</label>
         <input
           id="position"
+          formControlName="position"
           type="text"
           pinputtext
           class="p-inputtext p-component p-element"
@@ -40,6 +43,7 @@
           selectionMode="range"
           [readonlyInput]="true"
           inputId="range"
+          formControlName="eventDateRange"
         ></p-calendar>
       </div>
       <div class="field mb-4 col-12 md:col-6">
@@ -50,6 +54,7 @@
           pinputtext
           class="p-inputtext p-component p-element"
           readonly
+          formControlName="mark"
         />
       </div>
       <div class="field my-4 flex col-12">
@@ -87,6 +92,6 @@
           *ngIf="isLoading"
         ></p-progressSpinner>
       </div>
-    </div>
+    </form>
   </div>
 </section>

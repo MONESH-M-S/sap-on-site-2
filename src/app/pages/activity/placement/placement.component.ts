@@ -25,7 +25,7 @@ export class PlacementComponent implements OnInit {
   private _initForm() {
     this.placementForm = this.formBuilder.group({
       companyName: ['', Validators.required],
-      companyVenue: ['', Validators.required],
+      companyLocation: ['', Validators.required],
       placedType: ['', Validators.required],
       placedDate: [new Date(), Validators.required],
       roundsShortListed: ['', [Validators.required, Validators.min(1), Validators.max(5)]],

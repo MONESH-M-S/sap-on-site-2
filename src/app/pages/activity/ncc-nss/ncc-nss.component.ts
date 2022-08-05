@@ -28,7 +28,7 @@ export class NccNssComponent implements OnInit {
       eventName: ['', Validators.required],
       eventVenue: ['', Validators.required],
       position: [''],
-      dateRange: ['', Validators.required],
+      eventDateRange: ['', Validators.required],
     });
   }
 }
