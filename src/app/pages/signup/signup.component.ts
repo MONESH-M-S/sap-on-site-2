@@ -13,7 +13,8 @@ import { MentorData } from 'src/app/data/mentor.data';
 export class SignupComponent implements OnInit {
   userId!: string;
   signupForm!: FormGroup;
-  imageDisplay = 'assets/images/streamlinehq-avatar-neutral-frame-add-users-400.png';
+  imageDisplay =
+    'assets/images/streamlinehq-avatar-neutral-frame-add-users-400.png';
   year = ['1st year', '2nd year', '3rd year', '4th year'];
   availaleMentors = MentorData.exportClass();
   availableDepartments = DepartmentData.exportClass();

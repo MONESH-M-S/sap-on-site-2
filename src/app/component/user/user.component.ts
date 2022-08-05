@@ -42,8 +42,8 @@ export class UserComponent implements OnInit {
   //   });
   // }
 
-  onClickedEditDetail() {
-    this.router.navigate([`s/${this.userId}/edit-detail`], {
+  navigateToEditPage() {
+    this.router.navigate([`user/${this.userId}/edit-detail`], {
       queryParams: { edit: true },
     });
   }

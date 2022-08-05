@@ -6,6 +6,7 @@ import { SignupComponent } from '@page/signup/signup.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'user/:id/edit-detail', component: SignupComponent },
   {
     path: 'user',
     loadChildren: () =>
