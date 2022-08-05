@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Activity } from 'src/app/models/activity';
+import { Activity } from '@models/activity';
 
 @Component({
   selector: 'app-activity-list',
@@ -7,9 +7,7 @@ import { Activity } from 'src/app/models/activity';
   styleUrls: ['./activity-list.component.scss'],
 })
 export class ActivityListComponent implements OnInit {
-  userActivity?: Activity[] = [
-    {eventName: "Test",mark: 20}
-  ];
+  userActivity?: Activity[] = [];
   constructor() {}
 
   ngOnInit(): void {}
