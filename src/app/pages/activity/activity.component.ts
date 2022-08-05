@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivityData } from './activity.data';
+import { ActivityData } from '../../data/activity.data';
 
 @Component({
   selector: 'app-activity',
