@@ -39,10 +39,10 @@
         <p-fileUpload
           #fubauto
           mode="basic"
-          name="demo[]"
+          name="demo"
           accept="image/*"
           maxFileSize="2000000"
-          (onUpload)="onUpload($event)"
+          (onUpload)="onImageUpload($event)"
           class="mr-3"
           [auto]="true"
           chooseLabel="Upload Proof"
