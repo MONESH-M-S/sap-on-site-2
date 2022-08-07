@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NptelMarkData } from './data/nptel-data.mark';
 
 @Component({
   selector: 'app-nptel',
@@ -10,8 +11,10 @@ export class NptelComponent implements OnInit {
   nptelForm: FormGroup;
   imageDisplay?: string;
   courseDuration = ['4 week', '8 week', '12 week'];
-  data = ['Yes', 'No'];
+  type = ['Yes', 'No'];
+  availableCredit = NptelMarkData.exportClass();
   isLoading: boolean = false;
+  data: { label: string; mark: number };
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -25,6 +28,12 @@ export class NptelComponent implements OnInit {
     this.isLoading = true;
   }
 
+  onCreditChanged(event: any) {
+    this.data = event.value;
+    this.nptelForm.patchValue({ mark: event.value.mark });
+    this.nptelForm.get('mark').updateValueAndValidity();
+  }
+
   private _initForm() {
     this.nptelForm = this.formBuilder.group({
       registraionNumber: ['', Validators.required],
@@ -32,8 +41,7 @@ export class NptelComponent implements OnInit {
       courseName: ['', Validators.required],
       hostInstitution: ['', Validators.required],
       organizationName: ['', Validators.required],
-      courseDuration: ['', Validators.required],
-      credit: ['', [Validators.required, Validators.min(1), Validators.max(3)]],
+      credit: ['', Validators.required],
       creditTransfer: ['', Validators.required],
       mark: ['', Validators.required],
       image: ['', Validators.required],

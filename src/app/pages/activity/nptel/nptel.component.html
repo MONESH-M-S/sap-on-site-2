@@ -63,38 +63,29 @@
         />
       </div>
       <div class="field mb-4 col-12 md:col-6">
-        <label for="courseDuration" class="font-medium text-900">
-          Course Duration
-        </label>
-        <p-dropdown
-          id="courseDuration"
-          formControlName="courseDuration"
-          [options]="courseDuration"
-          [showClear]="true"
-        ></p-dropdown>
-      </div>
-      <div class="field mb-4 col-12 md:col-6">
         <label for="creditTransfer" class="font-medium text-900">
           Applying for Credit Transfer
         </label>
         <p-dropdown
           id="creditTransfer"
           formControlName="creditTransfer"
-          [options]="data"
+          [options]="type"
           [showClear]="true"
+          placeholder="Credit Transfer"
         ></p-dropdown>
       </div>
       <div class="field mb-4 col-12 md:col-6">
         <label class="font-medium text-900" for="credit">
           Credits Assigned
         </label>
-        <p-inputNumber
+        <p-dropdown
           id="credit"
           formControlName="credit"
-          inputId="minmax"
-          mode="decimal"
-        >
-        </p-inputNumber>
+          [options]="availableCredit"
+          placeholder="Select your Credit"
+          [showClear]="true"
+          (onChange)="onCreditChanged($event)"
+        ></p-dropdown>
       </div>
       <div class="field mb-4 col-12 md:col-6">
         <label for="mark" class="font-medium text-900"> Mark </label>

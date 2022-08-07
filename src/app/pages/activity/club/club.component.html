@@ -2,7 +2,7 @@
   <div class="surface-card p-4">
     <form [formGroup]="clubForm" class="grid formgrid p-fluid">
       <div class="field mb-4 col-12">
-        <label for="club_name" class="font-medium text-900"> Club Name </label>
+        <label for="club_name" class="font-medium text-900"> Club Name or Leadership Type </label>
         <input
           id="club_name"
           type="text"
@@ -15,7 +15,7 @@
         <label for="mark" class="font-medium text-900"> Position </label>
         <p-dropdown
           [options]="availalePositions"
-          placeholder="Select your club-level position"
+          placeholder="Select your position"
           optionLabel="label"
           [showClear]="true"
           id="depatment"

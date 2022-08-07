@@ -2,7 +2,7 @@ export class ActivityData {
   static activityData = [
     { label: 'Paper Presentation', route: 'paper', icon: 'file' },
     { label: 'Project Presentation', route: 'project', icon: 'cog' },
-    { label: 'Club', route: 'club', icon: 'users' },
+    { label: 'Club & Leadership', route: 'club', icon: 'users' },
     { label: 'Entrepreneurship', route: 'entrepreneurship', icon: 'th-large' },
     { label: 'NPTEL', route: 'nptel', icon: 'chart-bar' },
     {
