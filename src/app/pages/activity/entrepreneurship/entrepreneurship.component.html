@@ -1,6 +1,6 @@
 <section class="mt-8">
   <div class="surface-card p-4">
-    <form [formGroup]="workshopForm" class="grid formgrid p-fluid">
+    <form [formGroup]="entrepreneurshipForm" class="grid formgrid p-fluid">
       <div class="field mb-4 col-12 md:col-6">
         <label for="eventName" class="font-medium text-900"> Event Name </label>
         <input
@@ -36,12 +36,15 @@
         />
       </div>
       <div class="field mb-4 col-12 md:col-6">
-        <label for="mode" class="font-medium text-900"> Workshop Mode </label>
+        <label for="mode" class="font-medium text-900"> Workshop Type </label>
         <p-dropdown
-          [options]="mode"
+          [options]="availableType"
           [showClear]="true"
           id="mode"
+          placeholder="Type"
+          optionLabel="label"
           formControlName="mode"
+          (onChange)="onTypeChanged($event)"
         ></p-dropdown>
       </div>
       <div class="field mb-4 col-12 md:col-6">
@@ -92,7 +95,7 @@
           class="p-button-raised p-button-success w-auto"
           *ngIf="!isLoading"
           (click)="onFormSubmitted()"
-          [disabled]="workshopForm.invalid"
+          [disabled]="entrepreneurshipForm.invalid"
         ></button>
         <p-progressSpinner
           [style]="{ width: '50px', height: '50px' }"

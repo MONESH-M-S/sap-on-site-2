@@ -12,7 +12,7 @@ import { ProjectComponent } from './project/project.component';
 import { SportsComponent } from './sports/sports.component';
 import { TechnoManagerialComponent } from './techno-managerial/techno-managerial.component';
 import { VoluntaryComponent } from './voluntary/voluntary.component';
-import { WorkshopComponent } from './workshop/workshop.component';
+import { EntrepreneurshipComponent } from './entrepreneurship/entrepreneurship.component';
 import { ActivityComponent } from './activity.component';
 import { VacComponent } from './vac/vac.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -24,7 +24,7 @@ import { ActivityRoutingModule } from './activity-routing.module';
     PaperComponent,
     ProjectComponent,
     ClubComponent,
-    WorkshopComponent,
+    EntrepreneurshipComponent,
     TechnoManagerialComponent,
     SportsComponent,
     ProjectPaperComponent,

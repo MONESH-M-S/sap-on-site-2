@@ -12,7 +12,7 @@ import { SportsComponent } from './sports/sports.component';
 import { TechnoManagerialComponent } from './techno-managerial/techno-managerial.component';
 import { VacComponent } from './vac/vac.component';
 import { VoluntaryComponent } from './voluntary/voluntary.component';
-import { WorkshopComponent } from './workshop/workshop.component';
+import { EntrepreneurshipComponent } from './entrepreneurship/entrepreneurship.component';
 
 const routes: Routes = [
   {
@@ -22,7 +22,7 @@ const routes: Routes = [
       { path: 'paper', component: PaperComponent },
       { path: 'project', component: ProjectComponent },
       { path: 'club', component: ClubComponent },
-      { path: 'workshop', component: WorkshopComponent },
+      { path: 'entrepreneurship', component: EntrepreneurshipComponent },
       { path: 'nptel', component: NptelComponent },
       { path: 'vac', component: VacComponent },
       { path: 'techno-managerial', component: TechnoManagerialComponent },

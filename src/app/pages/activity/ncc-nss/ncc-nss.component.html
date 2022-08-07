@@ -24,7 +24,9 @@
         />
       </div>
       <div class="field mb-4 col-12 md:col-6">
-        <label for="position" class="font-medium text-900">Position in NSS/NCC</label>
+        <label for="position" class="font-medium text-900"
+          >Position in NSS/NCC</label
+        >
         <input
           id="position"
           formControlName="position"
@@ -32,6 +34,18 @@
           pinputtext
           class="p-inputtext p-component p-element"
         />
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="mark" class="font-medium text-900"> Camp Range </label>
+        <p-dropdown
+          [options]="availableMarks"
+          placeholder="Select the range"
+          optionLabel="label"
+          [showClear]="true"
+          id="depatment"
+          (onChange)="onChange($event)"
+          formControlName="position"
+        ></p-dropdown>
       </div>
       <div class="field mb-4 col-12 md:col-6">
         <label for="dateRange" class="font-medium text-900">

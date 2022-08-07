@@ -27,7 +27,7 @@ export class VoluntaryComponent implements OnInit {
       eventVenue: ['', Validators.required],
       activityDone: ['', Validators.required],
       eventDate: [new Date(), Validators.required],
-      mark: ['', Validators.required],
+      mark: [5, Validators.required],
       image: ['', Validators.required],
     });
   }

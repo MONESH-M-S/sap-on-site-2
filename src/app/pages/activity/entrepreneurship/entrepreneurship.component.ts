@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EntrepreneurshipMarkData } from './data/entrepreneurship-data.mark';
 
 @Component({
-  selector: 'app-workshop',
-  templateUrl: './workshop.component.html',
-  styleUrls: ['./workshop.component.scss'],
+  selector: 'app-entrepreneurship',
+  templateUrl: './entrepreneurship.component.html',
+  styleUrls: ['./entrepreneurship.component.scss'],
 })
-export class WorkshopComponent implements OnInit {
-  workshopForm: FormGroup;
+export class EntrepreneurshipComponent implements OnInit {
+  entrepreneurshipForm: FormGroup;
   imageDisplay?: string;
-  mode = ['Online', 'Offline'];
+  availableType = EntrepreneurshipMarkData.exportClass();
   isLoading: boolean = false;
+  data: { label: string; mark: number };
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -24,8 +26,14 @@ export class WorkshopComponent implements OnInit {
     this.isLoading = true;
   }
 
+  onTypeChanged(event: any) {
+    this.data = event.value;
+    this.entrepreneurshipForm.patchValue({ mark: event.value.mark });
+    this.entrepreneurshipForm.get('mark').updateValueAndValidity();
+  }
+
   private _initForm() {
-    this.workshopForm = this.formBuilder.group({
+    this.entrepreneurshipForm = this.formBuilder.group({
       eventName: ['', Validators.required],
       eventVenue: ['', Validators.required],
       workshopName: ['', Validators.required],

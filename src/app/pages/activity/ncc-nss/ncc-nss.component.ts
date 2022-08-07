@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NccNssMarkData } from './data/ncc-nss-data.mark';
 
 @Component({
   selector: 'app-ncc-nss',
@@ -10,6 +11,8 @@ export class NccNssComponent implements OnInit {
   nccForm: FormGroup;
   imageDisplay?: string;
   isLoading: boolean = false;
+  availableMarks = NccNssMarkData.exportClass();
+  data: { label: string; mark: number };
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -23,12 +26,20 @@ export class NccNssComponent implements OnInit {
     this.isLoading = true;
   }
 
+  onChange(event: any) {
+    this.data = event.value;
+    this.nccForm.patchValue({ mark: event.value.mark });
+    this.nccForm.get('mark').updateValueAndValidity();
+  }
+
   private _initForm() {
     this.nccForm = this.formBuilder.group({
       eventName: ['', Validators.required],
       eventVenue: ['', Validators.required],
       position: [''],
       eventDateRange: ['', Validators.required],
+      mark: ['', Validators.required],
+      image: ['', Validators.required],
     });
   }
 }
