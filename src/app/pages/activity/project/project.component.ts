@@ -9,12 +9,13 @@ import { ProjectMarkData } from './data/project-mark.data';
 })
 export class ProjectComponent implements OnInit {
   projectForm: FormGroup;
-  data = ['Inside KEC', 'Outside KEC'];
+  type = ['Inside KEC', 'Outside KEC'];
   availableModes = ['Online', 'Offline'];
   availablePosition = ProjectMarkData.exportClass();
   isPrizeWon: boolean = false;
   imageDisplay?: string;
   isLoading: boolean = false;
+  data: { label: string; prize: boolean; mark: number };
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -22,8 +23,16 @@ export class ProjectComponent implements OnInit {
     this._initForm();
   }
 
-  onPositionChange(event: Event) {
-    this.isPrizeWon = true;
+  onPositionChange(event: any) {
+    if (event.value.prize) {
+      this.isPrizeWon = true;
+    } else {
+      this.isPrizeWon = false;
+    }
+
+    this.data = event.value;
+    this.projectForm.patchValue({ mark: event.value.mark });
+    this.projectForm.get('mark').updateValueAndValidity();
   }
 
   onUpload(event: Event) {}

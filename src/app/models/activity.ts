@@ -3,7 +3,6 @@ export interface Activity {
   position?: string;
   companyName?: string;
   companyLocation?: string;
-  internType?: string;
   placedDate?: string;
   placedType?: string;
   roundShortListed?: string;

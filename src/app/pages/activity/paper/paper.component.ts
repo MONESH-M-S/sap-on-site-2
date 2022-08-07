@@ -9,12 +9,13 @@ import { PaperMarkData } from './data/paper-mark.data';
 })
 export class PaperComponent implements OnInit {
   paperForm: FormGroup;
-  data = ['Inside KEC', 'Outside KEC'];
+  type = ['Inside KEC', 'Outside KEC'];
   availableModes = ['Online', 'Offline'];
   availablePosition = PaperMarkData.exportClass();
   isPrizeWon: boolean = false;
   imageDisplay?: string;
   isLoading: boolean = false;
+  data: { label: string; prize: boolean; mark: number }; 
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -22,8 +23,16 @@ export class PaperComponent implements OnInit {
     this._initForm();
   }
 
-  onPositionChange(event: Event) {
-    this.isPrizeWon = true;
+  onPositionChange(event: any) {
+    if (event.value.prize) {
+      this.isPrizeWon = true;
+    } else {
+      this.isPrizeWon = false;
+    }
+
+    this.data = event.value;
+    this.paperForm.patchValue({ mark: event.value.mark });
+    this.paperForm.get('mark').updateValueAndValidity();
   }
 
   onUpload(event: Event) {}

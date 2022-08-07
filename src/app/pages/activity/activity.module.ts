@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { PrimengModule } from 'src/app/primeng.module';
 
 import { ClubComponent } from './club/club.component';
-import { InternComponent } from './intern/intern.component';
 import { NccNssComponent } from './ncc-nss/ncc-nss.component';
 import { NptelComponent } from './nptel/nptel.component';
 import { PaperComponent } from './paper/paper.component';
@@ -31,7 +30,6 @@ import { ActivityRoutingModule } from './activity-routing.module';
     ProjectPaperComponent,
     NptelComponent,
     PlacementComponent,
-    InternComponent,
     NccNssComponent,
     VoluntaryComponent,
     VacComponent,

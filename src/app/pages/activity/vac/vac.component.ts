@@ -30,8 +30,8 @@ export class VacComponent implements OnInit {
       coursePlatform: ['', Validators.required],
       mode: ['', Validators.required],
       courseDateRange: ['', Validators.required],
-      mark: ['', Validators.required],
-      image: ['', Validators.required]
-    })
+      mark: [5, Validators.required],
+      image: ['', Validators.required],
+    });
   }
 }

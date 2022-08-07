@@ -27,20 +27,21 @@
       </div>
       <div class="field mb-4 col-12 md:col-4">
         <label for="projectMode" class="font-medium text-900">
-          Project Mode with academic year (Eg: Mini Project 2021-22)
+          Project Mode with academic year
         </label>
         <input
           id="projectMode"
           type="text"
           formControlName="projectMode"
           pinputtext
+          placeholder="Eg: Mini Project 2021-22"
           class="p-inputtext p-component p-element"
         />
       </div>
       <div class="field mb-4 col-12 md:col-4">
-        <label for="publishedIn" class="font-medium text-900"
-          >Published In</label
-        >
+        <label for="publishedIn" class="font-medium text-900">
+          Published In
+        </label>
         <p-dropdown
           [options]="availablePublishment"
           [showClear]="true"
@@ -95,25 +96,27 @@
       </div>
       <div class="field mb-4 col-12 md:col-4">
         <label for="authors" class="font-medium text-900">
-          Name of author and co-authors (eg: Sai M)
+          Name of author and co-authors
         </label>
         <input
           id="authors"
           formControlName="authors"
           type="text"
           pinputtext
+          placeholder="Eg: Sai M, Parisheth M, .."
           class="p-inputtext p-component p-element"
         />
       </div>
       <div class="field mb-4 col-12 md:col-4">
         <label for="journalDetail" class="font-medium text-900">
-          Journal Detail (eg: Vol :3, issue:1, page: 99-102 March 2021)
+          Journal Detail
         </label>
         <input
           id="journalDetail"
           formControlName="journalDetail"
           type="text"
           pinputtext
+          placeholder="Eg: Vol :3, issue:1, page: 99-102 March 2021"
           class="p-inputtext p-component p-element"
         />
       </div>

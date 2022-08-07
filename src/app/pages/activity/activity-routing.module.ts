@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActivityComponent } from './activity.component';
 import { ClubComponent } from './club/club.component';
-import { InternComponent } from './intern/intern.component';
 import { NccNssComponent } from './ncc-nss/ncc-nss.component';
 import { NptelComponent } from './nptel/nptel.component';
 import { PaperComponent } from './paper/paper.component';
@@ -31,7 +30,6 @@ const routes: Routes = [
       { path: 'project-paper', component: ProjectPaperComponent },
       { path: 'sports', component: SportsComponent },
       { path: 'placement', component: PlacementComponent },
-      { path: 'intern', component: InternComponent },
       { path: 'voluntary', component: VoluntaryComponent },
     ],
   },
