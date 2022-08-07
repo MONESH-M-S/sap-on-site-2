@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProjectPaperMarkData } from './data/project-paper-data.mark';
 
 @Component({
   selector: 'app-project-paper',
@@ -16,8 +17,10 @@ export class ProjectPaperComponent implements OnInit {
     'Copyright',
     'NIL',
   ];
+  availableType = ProjectPaperMarkData.exportClass();
   imageDisplay?: string;
   isLoading: boolean = false;
+  data: { label: string; mark: number };
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -28,6 +31,12 @@ export class ProjectPaperComponent implements OnInit {
   onUpload(event: Event) {}
 
   onFormSubmitted() {}
+
+  onTypeChange(event: any) {
+    this.data = event.value;
+    this.projectToPaperForm.patchValue({ mark: event.value.mark });
+    this.projectToPaperForm.get('mark').updateValueAndValidity();
+  }
 
   private _initForm() {
     this.projectToPaperForm = this.formBuilder.group({
@@ -43,6 +52,7 @@ export class ProjectPaperComponent implements OnInit {
       journalDetail: ['', Validators.required],
       issnNumber: ['', Validators.required],
       doiNumber: ['', Validators.required],
+      convertionStage: ['', Validators.required],
       mark: ['', Validators.required],
       image: ['', Validators.required],
     });

@@ -33,6 +33,7 @@ export interface Activity {
   journalDetail?: string;
   issnNumber?: string;
   doiNumber?: string;
+  convertionStage: string;
   sportName?: string;
   eventDateRange?: string;
   eventLevel?: string;

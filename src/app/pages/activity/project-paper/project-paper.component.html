@@ -145,6 +145,20 @@
         />
       </div>
       <div class="field mb-4 col-12 md:col-4">
+        <label for="convertionStage" class="font-medium text-900">
+          Project to Paper Convertion stage
+        </label>
+        <p-dropdown
+          [options]="availableType"
+          placeholder="Select the stage"
+          [showClear]="true"
+          optionLabel="label"
+          id="convertionStage"
+          formControlName="convertionStage"
+          (onChange)="onTypeChange($event)"
+        ></p-dropdown>
+      </div>
+      <div class="field mb-4 col-12 md:col-4">
         <label for="mark" class="font-medium text-900">Mark</label>
         <input
           id="mark"
