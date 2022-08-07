@@ -12,7 +12,7 @@ export class ActivityData {
       route: 'techno-managerial',
       icon: 'slack',
     },
-    { label: 'Placement & Intern', route: 'placement', icon: 'envelope' },
+    { label: 'Placement & Internship', route: 'placement', icon: 'envelope' },
     { label: 'NCC-NSS', route: 'ncc-nss', icon: 'inbox' },
     { label: 'Sports', route: 'sports', icon: 'globe' },
     { label: 'Voluntary Works', route: 'voluntary', icon: 'hashtag' },

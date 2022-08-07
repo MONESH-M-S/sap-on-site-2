@@ -29,7 +29,7 @@
         </label>
         <p-dropdown
           formControlName="type"
-          [options]="data"
+          [options]="type"
           [showClear]="true"
           id="mode"
         ></p-dropdown>
@@ -47,22 +47,15 @@
       <div class="field mb-4 col-12 md:col-6">
         <label for="eventLevel" class="font-medium text-900">Event Level</label>
         <p-dropdown
-          [options]="eventLevel"
+          [options]="availableLevels"
+          placeholder="Select event level"
           [showClear]="true"
           id="eventLevel"
-          formControlName="eventLevel"
+          (onChange)="onLevelChange($event)"
         ></p-dropdown>
       </div>
-      <div class="field mb-4 col-12 md:col-6">
-        <label for="eventDate" class="font-medium text-900">Event Date</label>
-        <p-calendar
-          dateFormat="dd-mm-yy"
-          id="eventDate"
-          inputId="dateformat"
-          formControlName="eventDate"
-        ></p-calendar>
-      </div>
-      <div class="field mb-4 col-12 md:col-6">
+      
+      <div class="field mb-4 col-12 md:col-6" *ngIf="isPrizeWon">
         <label for="eventVenue" class="font-medium text-900">
           Cash Award (If Won)
         </label>
@@ -75,6 +68,15 @@
           formControlName="prizeAmount"
         >
         </p-inputNumber>
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="eventDate" class="font-medium text-900">Event Date</label>
+        <p-calendar
+          dateFormat="dd-mm-yy"
+          id="eventDate"
+          inputId="dateformat"
+          formControlName="eventDate"
+        ></p-calendar>
       </div>
       <div class="field mb-4 col-12 md:col-6">
         <label for="mark" class="font-medium text-900"> Mark </label>

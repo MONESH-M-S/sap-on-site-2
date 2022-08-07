@@ -37,6 +37,7 @@ export class NccNssComponent implements OnInit {
       eventName: ['', Validators.required],
       eventVenue: ['', Validators.required],
       position: [''],
+      campRange:['', Validators.required],
       eventDateRange: ['', Validators.required],
       mark: ['', Validators.required],
       image: ['', Validators.required],

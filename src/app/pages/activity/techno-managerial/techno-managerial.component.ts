@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TechnoManagerialMarkData } from './data/techno-managerial-mark.data';
 
 @Component({
   selector: 'app-techno-managerial',
@@ -8,10 +9,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class TechnoManagerialComponent implements OnInit {
   technoForm: FormGroup;
-  data = ['Inside KEC', 'Outside KEC'];
-  eventLevel = ['State', 'National', 'International'];
+  type = ['Inside KEC', 'Outside KEC'];
+  availableLevels = TechnoManagerialMarkData.exportClass();
   imageDisplay?: string;
   isLoading: boolean = false;
+  isPrizeWon: boolean = false;
+  data: { label: string; prize: boolean; mark: number };
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -22,6 +25,18 @@ export class TechnoManagerialComponent implements OnInit {
   onUpload(event: Event) {}
 
   onFormSubmitted() {}
+
+  onLevelChange(event: any) {
+    if (event.value.prize) {
+      this.isPrizeWon = true;
+    } else {
+      this.isPrizeWon = false;
+    }
+
+    this.data = event.value;
+    this.technoForm.patchValue({ mark: event.value.mark });
+    this.technoForm.get('mark').updateValueAndValidity();
+  }
 
   private _initForm() {
     this.technoForm = this.formBuilder.group({

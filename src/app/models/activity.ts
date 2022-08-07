@@ -6,6 +6,7 @@ export interface Activity {
   placedDate?: string;
   placedType?: string;
   roundShortListed?: string;
+  campRange?: string;
   eventName?: string;
   eventVenue?: string;
   registrationNumber?: string;
