@@ -7,6 +7,6 @@ export interface User {
   mentor?: string;
   year?: string;
   image?: string;
-  _id?: string;
+  id?: string;
   type?: 'user';
 }

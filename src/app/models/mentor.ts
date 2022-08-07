@@ -4,6 +4,6 @@ export interface Mentor {
   password?: string;
   department?: string;
   isAdmin?: boolean;
-  _id?: string;
+  id?: string;
   type?: 'mentor';
 }
