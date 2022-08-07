@@ -13,6 +13,7 @@ import { TechnoManagerialComponent } from './techno-managerial/techno-managerial
 import { VacComponent } from './vac/vac.component';
 import { VoluntaryComponent } from './voluntary/voluntary.component';
 import { EntrepreneurshipComponent } from './entrepreneurship/entrepreneurship.component';
+import { GovtExamComponent } from './govt-exam/govt-exam.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
       { path: 'club', component: ClubComponent },
       { path: 'entrepreneurship', component: EntrepreneurshipComponent },
       { path: 'nptel', component: NptelComponent },
+      { path: 'gate-govt', component: GovtExamComponent },
       { path: 'vac', component: VacComponent },
       { path: 'techno-managerial', component: TechnoManagerialComponent },
       { path: 'ncc-nss', component: NccNssComponent },

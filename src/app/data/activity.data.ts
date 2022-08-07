@@ -5,6 +5,11 @@ export class ActivityData {
     { label: 'Club', route: 'club', icon: 'users' },
     { label: 'Entrepreneurship', route: 'entrepreneurship', icon: 'th-large' },
     { label: 'NPTEL', route: 'nptel', icon: 'chart-bar' },
+    {
+      label: 'GATE/CAT/Govt. Exams',
+      route: 'gate-govt',
+      icon: 'bookmark-fill    ',
+    },
     { label: 'Value Added Course', route: 'vac', icon: 'folder-open' },
     { label: 'Project to Paper', route: 'project-paper', icon: 'book' },
     {

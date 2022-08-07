@@ -17,6 +17,7 @@ import { ActivityComponent } from './activity.component';
 import { VacComponent } from './vac/vac.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivityRoutingModule } from './activity-routing.module';
+import { GovtExamComponent } from './govt-exam/govt-exam.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ActivityRoutingModule } from './activity-routing.module';
     NccNssComponent,
     VoluntaryComponent,
     VacComponent,
+    GovtExamComponent,
   ],
   imports: [
     CommonModule,

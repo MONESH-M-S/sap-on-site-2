@@ -40,6 +40,9 @@ export interface Activity {
   courseDateRange?: string;
   activityDone?: string;
   workshopName?: string;
+  examName?: string;
+  examVenue?: string;
+  examLevel?: string;
   activity_type: string;
   mark: number;
   image: number;
