@@ -12,7 +12,7 @@ export class ClubComponent implements OnInit {
   availalePositions = ClubMarkData.exportClass();
   imageDisplay?: string;
   isLoading: boolean = false;
-  data: { label: string; value: number };
+  data: { label: string; mark: number };
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -22,7 +22,7 @@ export class ClubComponent implements OnInit {
 
   onPositionChange(event: any) {
     this.data = event.value;
-    this.clubForm.patchValue({ mark: event.value.value });
+    this.clubForm.patchValue({ mark: event.value.mark });
     this.clubForm.get('mark').updateValueAndValidity();
   }
 

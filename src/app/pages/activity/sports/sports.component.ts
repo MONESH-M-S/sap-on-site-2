@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SportsMarkData } from './data/sports-mark.data';
 
 @Component({
   selector: 'app-sports',
@@ -8,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SportsComponent implements OnInit {
   sportsForm: FormGroup;
-  eventLevel = ['State', 'Interzone', 'National', 'International'];
+  availaleLevelWithPrize = SportsMarkData.exportClass();
   placedPosition = [
     '1st Position',
     '2nd Position',
@@ -18,6 +19,7 @@ export class SportsComponent implements OnInit {
   ];
   imageDisplay?: string;
   isLoading: boolean = false;
+  data: { label: string; mark: number };
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -29,6 +31,12 @@ export class SportsComponent implements OnInit {
 
   onFormSubmitted() {
     this.isLoading = true;
+  }
+
+  onLevelChange(event: any) {
+    this.data = event.value;
+    this.sportsForm.patchValue({ mark: event.value.mark });
+    this.sportsForm.get('mark').updateValueAndValidity();
   }
 
   private _initForm() {

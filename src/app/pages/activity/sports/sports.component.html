@@ -38,10 +38,13 @@
           Level of the Event
         </label>
         <p-dropdown
-          [options]="eventLevel"
+          [options]="availaleLevelWithPrize"
           formControlName="eventLevel"
+          placeholder="Select the event level"
           [showClear]="true"
           id="level"
+          optionLabel="label"
+          (onChange)="onLevelChange($event)"
         ></p-dropdown>
       </div>
       <div class="field mb-4 col-12 md:col-6">
@@ -52,6 +55,7 @@
           [options]="placedPosition"
           [showClear]="true"
           formControlName="position"
+          placeholder="Select your position"
           id="position"
         ></p-dropdown>
       </div>
