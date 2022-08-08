@@ -44,7 +44,12 @@ export class PlacementComponent implements OnInit {
     this.placementForm.get('mark').updateValueAndValidity();
   }
 
-  onFormSubmitted() {}
+  onFormSubmitted() {
+    this.isLoading = true;
+    if (this.placementForm.invalid) return;
+
+    console.log(this.placementForm.value);
+  }
 
   private _initForm() {
     this.placementForm = this.formBuilder.group({

@@ -33,6 +33,9 @@ export class GovtExamComponent implements OnInit {
 
   onFormSubmitted() {
     this.isLoading = true;
+    if (this.govtForm.invalid) return;
+
+    console.log(this.govtForm.value);
   }
 
   onTypeChanged(event: any) {

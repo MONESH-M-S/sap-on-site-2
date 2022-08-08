@@ -28,7 +28,12 @@ export class VoluntaryComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  onFormSubmitted() {}
+  onFormSubmitted() {
+    this.isLoading = true;
+    if (this.voluntaryForm.invalid) return;
+
+    console.log(this.voluntaryForm.value);
+  }
 
   private _initForm() {
     this.voluntaryForm = this.formBuilder.group({

@@ -39,6 +39,9 @@ export class ClubComponent implements OnInit {
 
   onFormSubmitted() {
     this.isLoading = true;
+    if (this.clubForm.invalid) return;
+
+    console.log(this.clubForm.value);
   }
 
   private _initForm() {

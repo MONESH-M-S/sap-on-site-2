@@ -35,6 +35,9 @@ export class NptelComponent implements OnInit {
 
   onFormSubmitted() {
     this.isLoading = true;
+    if (this.nptelForm.invalid) return;
+
+    console.log(this.nptelForm.value);
   }
 
   onCreditChanged(event: any) {

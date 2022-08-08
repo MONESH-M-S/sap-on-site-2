@@ -40,6 +40,9 @@ export class SportsComponent implements OnInit {
 
   onFormSubmitted() {
     this.isLoading = true;
+    if (this.sportsForm.invalid) return;
+
+    console.log(this.sportsForm.value);
   }
 
   onLevelChange(event: any) {

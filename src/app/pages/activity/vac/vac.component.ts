@@ -31,6 +31,9 @@ export class VacComponent implements OnInit {
 
   onFormSubmitted() {
     this.isLoading = true;
+    if (this.vacForm.invalid) return;
+
+    console.log(this.vacForm.value);
   }
 
   private _initForm() {

@@ -33,6 +33,9 @@ export class NccNssComponent implements OnInit {
 
   onFormSubmitted() {
     this.isLoading = true;
+    if (this.nccForm.invalid) return;
+
+    console.log(this.nccForm.value);
   }
 
   onChange(event: any) {

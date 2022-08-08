@@ -39,7 +39,12 @@ export class ProjectPaperComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  onFormSubmitted() {}
+  onFormSubmitted() {
+    this.isLoading = true;
+    if (this.projectToPaperForm.invalid) return;
+
+    console.log(this.projectToPaperForm.value);
+  }
 
   onTypeChange(event: any) {
     this.data = event.value;

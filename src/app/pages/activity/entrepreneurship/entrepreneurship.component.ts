@@ -33,6 +33,9 @@ export class EntrepreneurshipComponent implements OnInit {
 
   onFormSubmitted() {
     this.isLoading = true;
+    if (this.entrepreneurshipForm.invalid) return;
+
+    console.log(this.entrepreneurshipForm.value);
   }
 
   onTypeChanged(event: any) {

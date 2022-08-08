@@ -48,6 +48,9 @@ export class ProjectComponent implements OnInit {
 
   onFormSubmitted() {
     this.isLoading = true;
+    if (this.projectForm.invalid) return;
+
+    console.log(this.projectForm.value);
   }
 
   private _initForm() {

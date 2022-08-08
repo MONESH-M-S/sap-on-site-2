@@ -48,6 +48,9 @@ export class PaperComponent implements OnInit {
 
   onFormSubmitted() {
     this.isLoading = true;
+    if (this.paperForm.invalid) return;
+
+    console.log(this.paperForm.value);
   }
 
   private _initForm() {

@@ -33,7 +33,12 @@ export class TechnoManagerialComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  onFormSubmitted() {}
+  onFormSubmitted() {
+    this.isLoading = true
+    if (this.technoForm.invalid) return;
+
+    console.log(this.technoForm.value);
+  }
 
   onLevelChange(event: any) {
     if (event.value.prize) {
