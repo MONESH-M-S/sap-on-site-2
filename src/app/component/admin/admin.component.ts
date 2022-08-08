@@ -7,16 +7,19 @@ import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
-
-  id: string = '';
-  mentorDetail: Mentor = {name: "Abc", email: "abc@gmail.com", department: "EIE"};
+  id: string;
+  mentorDetail: Mentor = {
+    name: 'Abc',
+    email: 'abc@gmail.com',
+    department: 'EIE',
+  };
   availableStudents: User[] = [
-    {name: "lorem", rollno: "19eir000", year: "4th year"},
-    {name: "lorem", rollno: "20eir000", year: "3rd year"},
-    {name: "lorem", rollno: "21eir000", year: "2nd year"},
+    { name: 'lorem', rollno: '19eir000', year: '4th year', id: '123' },
+    { name: 'lorem', rollno: '20eir000', year: '3rd year', id: '123' },
+    { name: 'lorem', rollno: '21eir000', year: '2nd year', id: '234' },
   ];
   constructor(
     private router: Router,
@@ -25,37 +28,37 @@ export class AdminComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.route.params.subscribe((params) => {
-    //   if (params['name']) {
-    //     this.id = params['name'];
-    //     this.mentorService
-    //       .getMentorDetailsByName(params['name'])
-    //       .subscribe((res) => {
-    //         if (res.mentor != null) {
-    //           this.mentorDetail = res.mentor;
-    //           this.mentorService
-    //             .getStudentsListByMentorName(params['name'])
-    //             .subscribe((res) => {
-    //               if (res.users != null) {
-    //                 this.availableStudents = res.users;
-    //               } else {
-    //                 this.messageService.add({
-    //                   severity: 'info',
-    //                   summary: 'Note',
-    //                   detail: res.message,
-    //                 });
-    //               }
-    //             });
-    //         } else {
-    //           this.router.navigate(['/home']);
-    //         }
-    //       });
-    //   }
-    // });
+    this.route.params.subscribe((params) => {
+      if (params['id']) {
+        this.id = params['id'];
+        // this.mentorService
+        //   .getMentorDetailsByName(params['name'])
+        //   .subscribe((res) => {
+        //     if (res.mentor != null) {
+        //       this.mentorDetail = res.mentor;
+        //       this.mentorService
+        //         .getStudentsListByMentorName(params['name'])
+        //         .subscribe((res) => {
+        //           if (res.users != null) {
+        //             this.availableStudents = res.users;
+        //           } else {
+        //             this.messageService.add({
+        //               severity: 'info',
+        //               summary: 'Note',
+        //               detail: res.message,
+        //             });
+        //           }
+        //         });
+        //     } else {
+        //       this.router.navigate(['/home']);
+        //     }
+        //   });
+      }
+    });
   }
 
-  onCardClicked(id?: string) {
-    this.router.navigate([`m/s/${id}`]);
+  onCardClicked(id: string) {
+    this.router.navigate([`mentor/${this.id}/user/${id}`]);
   }
 
   openChangePasswordDialog() {
@@ -63,15 +66,12 @@ export class AdminComponent implements OnInit {
     //   width: '350px',
     //   hasBackdrop: true,
     // });
-
     // dialogRef1.afterClosed().subscribe((result) => {
     //   console.log(result);
-
     //   let dialogRef2 = this.dialog.open(NewPasswordDialogComponent, {
     //     width: '350px',
     //     hasBackdrop: true,
     //   });
-
     //   dialogRef2.afterClosed().subscribe((result) => {
     //     console.log(result);
     //   });
@@ -87,5 +87,4 @@ export class AdminComponent implements OnInit {
     // });
     // dialogRef.afterClosed().subscribe((result) => {});
   }
-
 }

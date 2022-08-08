@@ -49,10 +49,10 @@
             >
               <div
                 class="flex border-bottom-1 surface-border pb-4 cursor-pointer"
-                (click)="onCardClicked(student._id)"
+                (click)="onCardClicked(student.id)"
               >
                 <img
-                  src="assets/IMG_0172 Copy.JPG"
+                  [src]="student.image"
                   class="mr-3 border-round-sm"
                   style="width: 80px; height: 80px; object-fit: cover"
                 />
@@ -74,7 +74,9 @@
       </div>
     </div>
   </div>
-  <div class="tools border-round-xl shadow-8 fadein animation-duration-500">
+  <div
+    class="tools border-round-xl shadow-8 fadein animation-duration-500 w-10 lg:w-7"
+  >
     <div
       class="flex justify-content-center py-3 px-7"
       *ngIf="mentorDetail?.isAdmin"
@@ -125,7 +127,7 @@
           label="Show All Mentor"
           icon="pi pi-users"
           class="p-button-raised p-button-warning"
-          [routerLink]="['show-all-mentors']" 
+          [routerLink]="['show-all-mentors']"
         ></button>
       </div>
       <div class="button">
@@ -136,7 +138,7 @@
           label="Show All Marks"
           icon="pi pi-file"
           class="p-button-raised p-button-help"
-          [routerLink]="['show-all-marks']" 
+          [routerLink]="['show-all-marks']"
         ></button>
       </div>
     </div>

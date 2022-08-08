@@ -41,7 +41,9 @@ export class ClubComponent implements OnInit {
     this.isLoading = true;
     if (this.clubForm.invalid) return;
 
-    console.log(this.clubForm.value);
+    this.data = this.clubForm.get('position').value;
+
+    console.log(this.clubForm.value, this.data);
   }
 
   private _initForm() {
