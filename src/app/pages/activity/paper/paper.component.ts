@@ -35,7 +35,16 @@ export class PaperComponent implements OnInit {
     this.paperForm.get('mark').updateValueAndValidity();
   }
 
-  onUpload(event: Event) {}
+  onImageUpload(event: any) {
+    const file = event.files[0];
+    this.paperForm.patchValue({ image: file });
+    this.paperForm.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageDisplay = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
 
   onFormSubmitted() {
     this.isLoading = true;

@@ -27,7 +27,6 @@ export class ClubComponent implements OnInit {
   }
 
   onImageUpload(event: any) {
-    console.log(event);
     const file = event.files[0];
     this.clubForm.patchValue({ image: file });
     this.clubForm.get('image').updateValueAndValidity();

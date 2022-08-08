@@ -20,7 +20,16 @@ export class NccNssComponent implements OnInit {
     this._initForm();
   }
 
-  onUpload(event: Event) {}
+  onImageUpload(event: any) {
+    const file = event.files[0];
+    this.nccForm.patchValue({ image: file });
+    this.nccForm.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageDisplay = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
 
   onFormSubmitted() {
     this.isLoading = true;

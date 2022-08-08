@@ -35,7 +35,16 @@ export class ProjectComponent implements OnInit {
     this.projectForm.get('mark').updateValueAndValidity();
   }
 
-  onUpload(event: Event) {}
+  onImageUpload(event: any) {
+    const file = event.files[0];
+    this.projectForm.patchValue({ image: file });
+    this.projectForm.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageDisplay = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
 
   onFormSubmitted() {
     this.isLoading = true;

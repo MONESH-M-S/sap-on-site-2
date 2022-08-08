@@ -20,7 +20,16 @@ export class GovtExamComponent implements OnInit {
     this._initForm();
   }
 
-  onUpload(event: Event) {}
+  onImageUpload(event: any) {
+    const file = event.files[0];
+    this.govtForm.patchValue({ image: file });
+    this.govtForm.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageDisplay = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
 
   onFormSubmitted() {
     this.isLoading = true;

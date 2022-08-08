@@ -22,7 +22,16 @@ export class NptelComponent implements OnInit {
     this._initForm();
   }
 
-  onUpload(event: Event) {}
+  onImageUpload(event: any) {
+    const file = event.files[0];
+    this.nptelForm.patchValue({ image: file });
+    this.nptelForm.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageDisplay = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
 
   onFormSubmitted() {
     this.isLoading = true;

@@ -20,8 +20,17 @@ export class PlacementComponent implements OnInit {
   ngOnInit(): void {
     this._initForm();
   }
-
-  onUpload(event: Event) {}
+  
+  onImageUpload(event: any) {
+    const file = event.files[0];
+    this.placementForm.patchValue({ image: file });
+    this.placementForm.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageDisplay = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
 
   onPositionChange(event: any) {
     if (event.value.label == 'Not Placed Cleared Rounds') {

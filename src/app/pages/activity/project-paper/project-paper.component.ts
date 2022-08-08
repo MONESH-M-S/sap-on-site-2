@@ -28,7 +28,16 @@ export class ProjectPaperComponent implements OnInit {
     this._initForm();
   }
 
-  onUpload(event: Event) {}
+  onImageUpload(event: any) {
+    const file = event.files[0];
+    this.projectToPaperForm.patchValue({ image: file });
+    this.projectToPaperForm.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageDisplay = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
 
   onFormSubmitted() {}
 
