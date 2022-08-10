@@ -3,9 +3,17 @@
     class="surface-overlay py-2 px-6 surface-border relative lg:static"
     style="min-height: 30px"
   >
-    <button pButton color="warn" (click)="(location.back)">Back</button>
+    <button
+      pButton
+      pRipple
+      type="button"
+      label="Back"
+      (click)="location.back()"
+      icon="pi pi-angle-left"
+      class="p-button-danger p-button-text"
+    ></button>
   </div>
-  <div class="surface-section px-6 py-5">
+  <div class="surface-section px-6 py-3">
     <div
       class="flex align-items-start flex-column lg:flex-row lg:justify-content-around"
     >
@@ -37,30 +45,36 @@
         </div>
       </div>
       <div class="mt-3 lg:mt-0 flex flex-column">
-        <button color="primary" class="mt-2" (click)="openMailDailog()">
-          Send Email
-        </button>
         <button
-          color="accent"
-          class="mt-2"
-          (click)="showMarkTable = true"
+          pButton
+          pRipple
+          type="button"
+          label="Send Mail"
+          (click)="openMailDailog()"
+          class="p-button-raised p-button-secondary"
+        ></button>
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="View Mark Table"
           *ngIf="!showMarkTable"
-        >
-          View Mark Table
-        </button>
+          (click)="showMarkTable = true"
+          class="p-button-raised p-button-warning mt-2"
+        ></button>
         <button
-          mat-raised-button
-          color="warn"
-          class="mt-2"
+          pButton
+          pRipple
+          type="button"
+          label="View Activity Table"
           (click)="showMarkTable = false"
           *ngIf="showMarkTable"
-        >
-          View Activity Table
-        </button>
+          class="p-button-raised p-button-warning mt-2"
+        ></button>
       </div>
     </div>
   </div>
-  <div class="px-6 py-1">
+  <div class="px-6 py-4">
     <div class="surface-card p-4 shadow-2 border-round card">
       <app-activity-table *ngIf="!showMarkTable"></app-activity-table>
       <app-mark-table *ngIf="showMarkTable"></app-mark-table>

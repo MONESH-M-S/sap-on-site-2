@@ -1,16 +1,16 @@
 <p-toast></p-toast>
 <section>
-  <h1
+  <h2
     *ngIf="studentActivitiesList.length == 0"
     class="text-center mt-5 font-semibold"
   >
     No Activity Uploaded By The Student, Till Now!
-  </h1>
+  </h2>
   <div *ngIf="studentActivitiesList.length > 0" class="card mt-5">
     <p-table
       [value]="studentActivitiesList"
       [scrollable]="true"
-      scrollHeight="410px"
+      scrollHeight="450px"
       styleClass="p-datatable-gridlines"
     >
       <ng-template pTemplate="header">

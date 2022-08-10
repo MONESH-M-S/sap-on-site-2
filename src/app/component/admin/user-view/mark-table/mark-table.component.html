@@ -4,14 +4,20 @@
     class="card"
     styleClass="datatable-gridlines"
     scrollable="true"
-    scrollHeight="400px"
+    scrollHeight="450px"
   >
     <p-table [value]="studentActivityMarks" responsiveLayout="scroll">
       <ng-template pTemplate="caption">
         <div class="flex justify-content-end">
-          <button mat-button pTooltip="Download as Excel" color="primary">
-            <mat-icon>cloud_download</mat-icon> Excel
-          </button>
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-cloud-download"
+            label="Excel"
+            pTooltip="Download as Excel"
+            class="p-button-help"
+          ></button>
         </div>
       </ng-template>
       <ng-template pTemplate="header" let-columns>
