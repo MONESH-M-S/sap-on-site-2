@@ -7,24 +7,24 @@ import { SignupComponent } from '@page/signup/signup.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'user/:id/edit-detail', component: SignupComponent },
+  { path: 's/:id/edit-detail', component: SignupComponent },
   {
-    path: 'user',
+    path: 's',
     loadChildren: () =>
       import('@component/user/user.module').then((m) => m.UserModule),
   },
   {
-    path: 'mentor',
+    path: 'm',
     loadChildren: () =>
       import('@component/admin/admin.module').then((m) => m.AdminModule),
   },
   {
-    path: 'user/:uid/activity',
+    path: 's/:uid/a',
     loadChildren: () =>
       import('@page/activity/activity.module').then((m) => m.ActivityModule),
   },
   {
-    path: 'user/:uid/activity/:aid',
+    path: 's/:uid/a/:aid',
     loadChildren: () =>
       import('@page/view-activity/view-activity.module').then(
         (m) => m.ViewActivityModule

@@ -104,7 +104,7 @@ export class SignupComponent implements OnInit {
         });
         window.setTimeout(() => {
           this.isLoading = false;
-          this.router.navigate([`user/${res.user.id}`]);
+          this.router.navigate([`s/${res.user.id}`]);
         }, 1500);
       } else {
         this.isLoading = false;

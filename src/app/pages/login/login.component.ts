@@ -55,7 +55,11 @@ export class LoginComponent implements OnInit {
           detail: res.message,
         });
       } else {
-        this.router.navigate([`user/${res.user.id}`]);
+       if(res.user.type === 'student') {
+        this.router.navigate([`s/${res.user.id}`]);
+       } else {
+        this.router.navigate([`m/${res.user.id}`]);
+       }
         this.isLoading = false;
       }
     });

@@ -82,6 +82,6 @@ export class UserComponent implements OnInit {
   // }
 
   openActivityUploadPage() {
-    this.router.navigate([`/user/${this.userId}/activity/paper`]);
+    this.router.navigate([`/s/${this.userId}/a/paper`]);
   }
 }

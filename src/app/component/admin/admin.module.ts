@@ -6,6 +6,7 @@ import { PrimengModule } from 'src/app/primeng.module';
 import { UserViewComponent } from './user-view/user-view.component';
 import { MarkTableComponent } from './user-view/mark-table/mark-table.component';
 import { ActivityTableComponent } from './user-view/activity-table/activity-table.component';
+import { UserResolver } from '@service/user/user/user.resolver';
 
 const routes: Routes = [
   {
@@ -14,14 +15,20 @@ const routes: Routes = [
       {
         path: ':id',
         component: AdminComponent,
+        resolve: { userData: UserResolver },
       },
-      { path: ':id/user/:uid', component: UserViewComponent },
+      { path: ':id/s/:sid', component: UserViewComponent },
     ],
   },
 ];
 
 @NgModule({
-  declarations: [AdminComponent, UserViewComponent, MarkTableComponent, ActivityTableComponent],
+  declarations: [
+    AdminComponent,
+    UserViewComponent,
+    MarkTableComponent,
+    ActivityTableComponent,
+  ],
   imports: [CommonModule, RouterModule.forChild(routes), PrimengModule],
 })
 export class AdminModule {}

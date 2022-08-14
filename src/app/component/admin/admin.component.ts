@@ -57,7 +57,7 @@ export class AdminComponent implements OnInit {
   }
 
   onCardClicked(id: string) {
-    this.router.navigate([`mentor/${this.id}/user/${id}`]);
+    this.router.navigate([`m/${this.id}/s/${id}`]);
   }
 
   openChangePasswordDialog() {
