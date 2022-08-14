@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: ':id',
     component: UserComponent,
-    resolve: { userData: UserResolver },
+    //resolve: { userData: UserResolver },
   },
 ];
 

@@ -23,6 +23,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('@page/activity/activity.module').then((m) => m.ActivityModule),
   },
+  {
+    path: 'user/:uid/activity/:aid',
+    loadChildren: () =>
+      import('@page/view-activity/view-activity.module').then((m) => m.ViewActivityModule),
+  },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: LoginComponent },
 ];
