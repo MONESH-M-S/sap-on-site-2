@@ -46,7 +46,8 @@ export class LoginComponent implements OnInit {
     };
 
     this.authService.login(login).subscribe((res) => {
-      if (res.user === null && res.mentor === null) {
+      if (res.user === null) {
+        console.log(res);
         this.isLoading = false;
         this.messageService.add({
           severity: 'error',
@@ -54,11 +55,7 @@ export class LoginComponent implements OnInit {
           detail: res.message,
         });
       } else {
-        if (res.user==null&& res.mentor!=null ) {
-          this.router.navigate([`m/${res.mentor.id}`]);
-        } else {
-          this.router.navigate([`s/${res.user.id}`]);
-        }
+        this.router.navigate([`user/${res.user.id}`]);
         this.isLoading = false;
       }
     });

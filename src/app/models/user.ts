@@ -4,9 +4,10 @@ export interface User {
   rollno?: string;
   password?: string;
   department?: string;
-  mentor?: string;
+  mentor_id?: string;
   year?: string;
   image?: string;
   id?: string;
-  type?: 'user';
+  type?: 'student' | 'mentor';
+  is_admin?: boolean;
 }

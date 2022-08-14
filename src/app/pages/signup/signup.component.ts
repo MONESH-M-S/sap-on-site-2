@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '@service/auth/auth.service';
+import { UserService } from '@service/user/user.service';
 import { MessageService } from 'primeng/api';
 import { DepartmentData } from 'src/app/data/department.data';
 import { MentorData } from 'src/app/data/mentor.data';
@@ -27,7 +29,9 @@ export class SignupComponent implements OnInit {
     private formBuilder: FormBuilder,
     private messageService: MessageService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -37,17 +41,17 @@ export class SignupComponent implements OnInit {
         this.route.queryParams.subscribe((queryParams) => {
           if (queryParams['edit'] === 'true') {
             this.editMode = true;
-            // this.homeService
-            //   .getUserDetailById(params['id'])
-            //   .subscribe((res) => {
-            //     if (res.user != null) {
-            //       this.userDetail = res.user;
-            //       this._initFormWithData();
-            //       this.imageDisplay = this.userDetail.image;
-            //     } else {
-            //       this.router.navigate(['/home']);
-            //     }
-            //   });
+            this.userService
+              .getUserDetailById(params['id'])
+              .subscribe((res) => {
+                if (res.user != null) {
+                  this.userDetail = res.user;
+                  this._initFormWithData();
+                  this.imageDisplay = this.userDetail.image;
+                } else {
+                  this.router.navigate(['/home']);
+                }
+              });
           }
         });
       } else {
@@ -85,32 +89,32 @@ export class SignupComponent implements OnInit {
     user.append('name', this.signupForm.value.name);
     user.append('email', this.signupForm.value.email);
     user.append('password', this.signupForm.value.password);
-    user.append('rollno', this.signupForm.value.rollno);
+    user.append('rollNo', this.signupForm.value.rollno);
     user.append('department', this.signupForm.value.department);
     user.append('year', this.signupForm.value.year);
     user.append('mentor', this.signupForm.value.mentor);
     user.append('image', this.signupForm.value.image);
 
-    // this.homeService.userSignup(user).subscribe((res) => {
-    //   if (res.user != null) {
-    //     this.messageService.add({
-    //       severity: 'success',
-    //       summary: 'Success',
-    //       detail: res.message,
-    //     });
-    //     window.setTimeout(() => {
-    //       this.isLoading = false;
-    //       this.router.navigate([`s/${res.user._id}`]);
-    //     }, 1500);
-    //   } else {
-    //     this.isLoading = false;
-    //     return this.messageService.add({
-    //       severity: 'error',
-    //       summary: 'Error',
-    //       detail: res.message,
-    //     });
-    //   }
-    // });
+    this.authService.userSignup(user).subscribe((res) => {
+      if (res.user != null) {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: res.message,
+        });
+        window.setTimeout(() => {
+          this.isLoading = false;
+          this.router.navigate([`user/${res.user.id}`]);
+        }, 1500);
+      } else {
+        this.isLoading = false;
+        return this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: res.message,
+        });
+      }
+    });
   }
 
   private _initFormAsNull() {
@@ -132,17 +136,18 @@ export class SignupComponent implements OnInit {
       department: ['', Validators.required],
       mentor: ['', Validators.required],
       year: ['', Validators.required],
-      image: ['s', Validators.required],
+      image: ['', Validators.required],
     });
   }
 
   private _initFormWithData() {
+    console.log(this.userDetail)
     if (this.editMode == true) {
       this.signupForm = this.formBuilder.group({
         name: [this.userDetail.name, [Validators.required]],
         email: [this.userDetail.email, [Validators.required, Validators.email]],
         rollno: [
-          this.userDetail.rollno,
+          this.userDetail.roll_no,
           Validators.compose([
             Validators.required,
             Validators.minLength(8),

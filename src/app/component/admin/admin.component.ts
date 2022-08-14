@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Mentor } from '@models/mentor';
 import { User } from '@models/user';
 import { MessageService } from 'primeng/api';
 
@@ -11,7 +10,7 @@ import { MessageService } from 'primeng/api';
 })
 export class AdminComponent implements OnInit {
   id: string;
-  mentorDetail: Mentor = {
+  mentorDetail: User = {
     name: 'Abc',
     email: 'abc@gmail.com',
     department: 'EIE',

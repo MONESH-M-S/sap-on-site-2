@@ -19,17 +19,12 @@ export class UserComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      if (params['id']) {
-        this.userId = params['id'];
-        // this.userService.getUserDetailById(params['id']).subscribe((res) => {
-        //   if (res.user != null) {
-        //     this.userDetail = res.user;
-        //   } else {
-        //     this.router.navigate(['/home']);
-        //   }
-        // });
-        // this._getActivities(params['id']);
+    this.route.data.subscribe((res) => {
+      if (res.userData.user !== null) {
+        this.userDetail = res.userData.user;
+        this.userId = res.userData.user.id;
+      } else {
+        this.router.navigate(['/login']);
       }
     });
   }
