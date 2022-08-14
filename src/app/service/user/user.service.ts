@@ -16,4 +16,5 @@ export class UserService {
       `${this.BACKEND_URL}user/${id}`
     );
   }
+
 }

@@ -15,25 +15,10 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { DialogModule } from 'primeng/dialog';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 @NgModule({
-  imports: [
-    InputTextModule,
-    ButtonModule,
-    RippleModule,
-    InputMaskModule,
-    FileUploadModule,
-    ToastModule,
-    ProgressSpinnerModule,
-    CheckboxModule,
-    DropdownModule,
-    TableModule,
-    TooltipModule,
-    InputTextareaModule,
-    CalendarModule,
-    CardModule,
-    InputNumberModule,
-  ],
   exports: [
     InputTextModule,
     ButtonModule,
@@ -50,6 +35,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
     CalendarModule,
     CardModule,
     InputNumberModule,
+    DialogModule,
+    InputSwitchModule,
   ],
 })
 export class PrimengModule {}

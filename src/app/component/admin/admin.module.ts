@@ -7,6 +7,7 @@ import { UserViewComponent } from './user-view/user-view.component';
 import { MarkTableComponent } from './user-view/mark-table/mark-table.component';
 import { ActivityTableComponent } from './user-view/activity-table/activity-table.component';
 import { UserResolver } from '@service/user/user/user.resolver';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -29,6 +30,11 @@ const routes: Routes = [
     MarkTableComponent,
     ActivityTableComponent,
   ],
-  imports: [CommonModule, RouterModule.forChild(routes), PrimengModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    PrimengModule,
+    ReactiveFormsModule,
+  ],
 })
 export class AdminModule {}
