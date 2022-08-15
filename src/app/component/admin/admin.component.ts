@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DepartmentData } from 'src/app/data/department.data';
 import { User } from '@models/user';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '@service/auth/auth.service';
+import { MentorService } from '@service/mentor/mentor.service';
 
 @Component({
   selector: 'app-admin',
@@ -23,7 +24,9 @@ export class AdminComponent implements OnInit {
     { name: 'lorem', rollno: '20eir000', year: '3rd year', id: '123' },
     { name: 'lorem', rollno: '21eir000', year: '2nd year', id: '234' },
   ];
-  openDialog: boolean = false;
+  openAddAdminDialog: boolean = false;
+  openChangePasswordDialog: boolean = false;
+  openNewPasswordDialog: boolean = false;
   addMentorForm: FormGroup;
   isLoading: boolean = false;
   availableDepartments = DepartmentData.exportClass();
@@ -33,7 +36,8 @@ export class AdminComponent implements OnInit {
     private route: ActivatedRoute,
     private messageService: MessageService,
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private mentorService: MentorService
   ) {}
 
   ngOnInit(): void {
@@ -71,8 +75,6 @@ export class AdminComponent implements OnInit {
     this.router.navigate([`m/${this.id}/s/${id}`]);
   }
 
-  openChangePasswordDialog() {}
-
   onSubmit() {
     if (this.addMentorForm.invalid) return;
 
@@ -88,7 +90,7 @@ export class AdminComponent implements OnInit {
 
     this.authService.addMentor(mentor).subscribe((res) => {
       this.isLoading = false;
-      this.openDialog = false;
+      this.openAddAdminDialog = false;
       if (res.user != null) {
         return this.messageService.add({
           severity: 'success',
@@ -103,6 +105,51 @@ export class AdminComponent implements OnInit {
         });
       }
     });
+  }
+
+  checkOldPassForm(form: NgForm) {
+    this.isLoading = true;
+    this.mentorService
+      .checkMentorOldPassword(form.value.password, this.id)
+      .subscribe((res) => {
+        this.isLoading = false;
+        if (res.confirmation === true) {
+          this.openChangePasswordDialog = false;
+          this.openNewPasswordDialog = true;
+        } else {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: res.message,
+          });
+        }
+      });
+  }
+
+  updatePassword(form: NgForm) {
+    this.isLoading = true;
+    this.mentorService
+      .updatePassword(form.value.password, this.id)
+      .subscribe((res) => {
+        this.isLoading = false;
+        if (res.updated) {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: res.message + ', You will be navigate to login page!',
+          });
+          this.openNewPasswordDialog = false;
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 3000);
+        } else {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: res.message,
+          });
+        }
+      });
   }
 
   private _initForm() {

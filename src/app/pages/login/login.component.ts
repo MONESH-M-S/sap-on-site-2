@@ -47,7 +47,6 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(login).subscribe((res) => {
       if (res.user === null) {
-        console.log(res);
         this.isLoading = false;
         this.messageService.add({
           severity: 'error',
