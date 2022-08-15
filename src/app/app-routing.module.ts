@@ -23,7 +23,7 @@ const routes: Routes = [
       import('@page/activity/activity.module').then((m) => m.ActivityModule),
   },
   {
-    path: 's/view-a',
+    path: 'view-a',
     loadChildren: () =>
       import('@page/view-activity/view-activity.module').then(
         (m) => m.ViewActivityModule

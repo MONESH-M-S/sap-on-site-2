@@ -46,57 +46,11 @@ export class UserComponent implements OnInit {
     });
   }
 
-  // openViewActivityDialog() {
-  //   this.dialog.open(UploadActivityDialogComponent, {
-  //     data: { id: this.userId },
-  //     hasBackdrop: true,
-  //     disableClose: true,
-  //   });
-  // }
-
   navigateToEditPage() {
     this.router.navigate([`s/${this.userId}/edit-detail`], {
       queryParams: { edit: true },
     });
   }
-
-  // deleteActivity(id: string) {
-  //   let dialogRef = this.dialog.open(DeleteConformationDialogComponent, {
-  //     hasBackdrop: true,
-  //   });
-
-  //   dialogRef.afterClosed().subscribe((res) => {
-  //     if (res === 'Delete') {
-  //       this.userService.deleteActivityById(id).subscribe((res) => {
-  //         if (res.message === 'Activity deleted successfully!') {
-  //           this.messageService.add({
-  //             severity: 'success',
-  //             summary: 'Success',
-  //             detail: res.message,
-  //           });
-  //           this._getActivities(this.userId);
-  //         } else {
-  //           this.messageService.add({
-  //             severity: 'error',
-  //             summary: 'Error',
-  //             detail: res.message,
-  //           });
-  //           this._getActivities(this.userId);
-  //         }
-  //       });
-  //     }
-  //   });
-  // }
-
-  // private _getActivities(id: string) {
-  //   this.userService.getStudentActivitiesById(id).subscribe((res) => {
-  //     if (res.activites.length > 0) {
-  //       this.userActivity = res.activites;
-  //     } else {
-  //       this.userActivity = [];
-  //     }
-  //   });
-  // }
 
   openActivityUploadPage() {
     this.router.navigate([`/s/a/${this.userId}/paper`], {

@@ -34,7 +34,7 @@ export class ActivityListComponent implements OnInit {
   }
 
   viewActivity(id: string) {
-    this.router.navigate([`s/view-a/${id}`], {
+    this.router.navigate([`view-a/s/${id}`], {
       queryParams: { userId: this.userId },
     });
   }

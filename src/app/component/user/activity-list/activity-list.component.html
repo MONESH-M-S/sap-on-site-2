@@ -13,7 +13,7 @@
           <th pSortableColumn="mark" class="hidden xl:block">
             Mark <p-sortIcon field="mark"></p-sortIcon>
           </th>
-          <th pSortableColumn="createdAt" class="hidden xl:block">
+          <th pSortableColumn="createdAt">
             Added On<p-sortIcon field="createdAt"></p-sortIcon>
           </th>
           <th>Cretificate</th>
@@ -27,7 +27,7 @@
             {{ activity?.club_name | titlecase }}
             {{ activity?.course_name | titlecase }}
           </td>
-          <td>
+          <td class="hidden xl:block">
             {{ activity?.mark }}
           </td>
           <td>
@@ -71,7 +71,7 @@
               pTooltip="Delete Activity"
               tooltipPosition="top"
               *ngIf="activity.is_locked === false"
-              (click)="deleteActivity($event,activity.id)"
+              (click)="deleteActivity($event, activity.id)"
             ></button>
             <button
               pButton

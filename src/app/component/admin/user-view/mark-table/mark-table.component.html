@@ -1,12 +1,12 @@
 <p-toast></p-toast>
 <section>
-  <div
-    class="card"
-    styleClass="datatable-gridlines"
-    scrollable="true"
-    scrollHeight="450px"
-  >
-    <p-table [value]="studentActivityMarks" responsiveLayout="scroll">
+  <div class="card" styleClass="datatable-gridlines">
+    <p-table
+      [value]="studentActivityMarks"
+      responsiveLayout="scroll"
+      [scrollable]="true"
+      scrollHeight="450px"
+    >
       <ng-template pTemplate="caption">
         <div class="flex justify-content-end">
           <button
@@ -22,8 +22,8 @@
       </ng-template>
       <ng-template pTemplate="header" let-columns>
         <tr>
-          <th pSortableColumn="activity">
-            Activity <p-sortIcon field="activity"></p-sortIcon>
+          <th pSortableColumn="event">
+            Activity <p-sortIcon field="event"></p-sortIcon>
           </th>
           <th pSortableColumn="mark">
             Mark Obtained <p-sortIcon field="mark"></p-sortIcon>
@@ -33,7 +33,7 @@
       <ng-template pTemplate="body" let-detail>
         <tr>
           <td class="event-title">
-            {{ detail.event }}
+            {{ detail.event | titlecase }}
           </td>
           <td>{{ detail.mark }}</td>
         </tr>
