@@ -4,7 +4,7 @@ import { UserComponent } from './user.component';
 import { ActivityListComponent } from './activity-list/activity-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PrimengModule } from 'src/app/primeng.module';
-import { UserResolver } from '@service/user/user/user.resolver';
+import { UserResolver } from '@service/user/resolver/user.resolver';
 
 const routes: Routes = [
   {

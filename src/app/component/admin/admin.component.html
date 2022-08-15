@@ -6,7 +6,7 @@
     >
       <div>
         <div class="font-medium text-3xl text-900 mt-4">
-          Hi, {{ mentorDetail?.name }}
+          Hi, {{ mentorDetail?.name | titlecase }}
         </div>
         <div class="flex align-items-center text-700 flex-wrap">
           <div class="mr-5 flex align-items-center mt-3">
@@ -61,7 +61,7 @@
                     {{ student.name | titlecase }}
                   </span>
                   <span class="text-700 font-medium mb-1">
-                    {{ student.rollno }}
+                    ( {{ student.roll_no }} )
                   </span>
                   <span class="text-700 font-medium mb-2">
                     {{ student.year }}

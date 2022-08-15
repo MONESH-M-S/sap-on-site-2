@@ -13,16 +13,8 @@ import { AuthService } from '@service/auth/auth.service';
 })
 export class AdminComponent implements OnInit {
   id: string;
-  mentorDetail: User = {
-    name: 'Abc',
-    email: 'abc@gmail.com',
-    department: 'EIE',
-  };
-  availableStudents: User[] = [
-    { name: 'lorem', rollno: '19eir000', year: '4th year', id: '123' },
-    { name: 'lorem', rollno: '20eir000', year: '3rd year', id: '123' },
-    { name: 'lorem', rollno: '21eir000', year: '2nd year', id: '234' },
-  ];
+  mentorDetail!: User;
+  availableStudents: User[] = [];
   openDialog: boolean = false;
   addMentorForm: FormGroup;
   isLoading: boolean = false;
@@ -37,31 +29,12 @@ export class AdminComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      if (params['id']) {
-        this.id = params['id'];
-        // this.mentorService
-        //   .getMentorDetailsByName(params['name'])
-        //   .subscribe((res) => {
-        //     if (res.mentor != null) {
-        //       this.mentorDetail = res.mentor;
-        //       this.mentorService
-        //         .getStudentsListByMentorName(params['name'])
-        //         .subscribe((res) => {
-        //           if (res.users != null) {
-        //             this.availableStudents = res.users;
-        //           } else {
-        //             this.messageService.add({
-        //               severity: 'info',
-        //               summary: 'Note',
-        //               detail: res.message,
-        //             });
-        //           }
-        //         });
-        //     } else {
-        //       this.router.navigate(['/home']);
-        //     }
-        //   });
+    this.route.data.subscribe((res) => {
+      if (res.userData.user != null) {
+        this.mentorDetail = res.userData.user;
+      }
+      if (res.availableStudents.users.length > 0) {
+        this.availableStudents = res.availableStudents.users;
       }
     });
     this._initForm();
