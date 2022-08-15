@@ -17,7 +17,7 @@ import { GovtExamComponent } from './govt-exam/govt-exam.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     component: ActivityComponent,
     children: [
       { path: 'paper', component: PaperComponent },

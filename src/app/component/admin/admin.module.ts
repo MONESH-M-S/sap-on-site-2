@@ -19,7 +19,11 @@ const routes: Routes = [
         component: AdminComponent,
         resolve: { userData: UserResolver, availableStudents: MentorResolver },
       },
-      { path: ':id/s/:sid', component: UserViewComponent },
+      {
+        path: ':aid/s/:id',
+        component: UserViewComponent,
+        resolve: { userData: UserResolver },
+      },
     ],
   },
 ];

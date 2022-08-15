@@ -18,12 +18,12 @@ const routes: Routes = [
       import('@component/admin/admin.module').then((m) => m.AdminModule),
   },
   {
-    path: 's/:uid/a',
+    path: 's/a',
     loadChildren: () =>
       import('@page/activity/activity.module').then((m) => m.ActivityModule),
   },
   {
-    path: 's/:uid/a/:aid',
+    path: 's/view-a',
     loadChildren: () =>
       import('@page/view-activity/view-activity.module').then(
         (m) => m.ViewActivityModule

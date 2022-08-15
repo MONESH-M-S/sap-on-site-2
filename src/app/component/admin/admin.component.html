@@ -42,14 +42,14 @@
         <div class="grid">
           <div
             class="col-12 md:col-4 xl:col-3 p-3 fadeindown animation-duration-500"
-            *ngFor="let student of availableStudents"
+            *ngFor="let student of availableStudents; index as i"
           >
             <div
               class="surface-card shadow-2 border-rounded p-4 hover:shadow-7"
             >
               <div
                 class="flex border-bottom-1 surface-border pb-4 cursor-pointer"
-                (click)="onCardClicked(student.id)"
+                (click)="onCardClicked(student.id, i)"
               >
                 <img
                   [src]="student.image"
@@ -79,7 +79,7 @@
   >
     <div
       class="flex justify-content-center py-3 px-7"
-      *ngIf="mentorDetail?.is_admin"
+      *ngIf="!mentorDetail?.is_admin"
     >
       <div class="button">
         <button
@@ -95,7 +95,7 @@
     </div>
     <div
       class="flex justify-content-around py-3 px-7"
-      *ngIf="!mentorDetail?.is_admin"
+      *ngIf="mentorDetail?.is_admin"
     >
       <div class="button">
         <button

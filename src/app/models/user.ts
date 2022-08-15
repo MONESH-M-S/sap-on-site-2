@@ -1,7 +1,7 @@
 export interface User {
   name?: string;
   email?: string;
-  rollno?: string;
+  roll_no?: string;
   password?: string;
   department?: string;
   mentor_id?: string;

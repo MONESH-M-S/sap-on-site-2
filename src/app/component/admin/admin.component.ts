@@ -32,6 +32,7 @@ export class AdminComponent implements OnInit {
     this.route.data.subscribe((res) => {
       if (res.userData.user != null) {
         this.mentorDetail = res.userData.user;
+        this.id = res.userData.user.id;
       }
       if (res.availableStudents.users.length > 0) {
         this.availableStudents = res.availableStudents.users;
@@ -40,7 +41,7 @@ export class AdminComponent implements OnInit {
     this._initForm();
   }
 
-  onCardClicked(id: string) {
+  onCardClicked(id: string, i: number) {
     this.router.navigate([`m/${this.id}/s/${id}`]);
   }
 

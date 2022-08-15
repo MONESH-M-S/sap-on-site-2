@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ActivityService } from '@service/activity/activity.service';
+import { MessageService } from 'primeng/api';
 import { ClubMarkData } from './data/club-mark.data';
 
 @Component({
@@ -12,12 +15,24 @@ export class ClubComponent implements OnInit {
   availalePositions = ClubMarkData.exportClass();
   imageDisplay?: string;
   isLoading: boolean = false;
-  data: { label: string; mark: number };
+  id!: string;
+  data: any;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private activityService: ActivityService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
     this._initForm();
+    this.route.queryParams.subscribe((res) => {
+      if (res.userId) {
+        this.id = res.userId;
+      }
+    });
   }
 
   onPositionChange(event: any) {
@@ -43,7 +58,31 @@ export class ClubComponent implements OnInit {
 
     this.data = this.clubForm.get('position').value;
 
-    console.log(this.clubForm.value, this.data);
+    const form = new FormData();
+    form.append('clubName', this.clubForm.value.clubName);
+    form.append('position', this.clubForm.value.position.label);
+    form.append('image', this.clubForm.value.image);
+    form.append('mark', this.clubForm.value.mark);
+    form.append('activityType', 'club');
+    form.append('label', this.data.label);
+    form.append('uploaderId', this.id);
+
+    this.activityService.uploadNewActivity(form).subscribe((res) => {
+      this.isLoading = false;
+      if (res.activity) {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: res.message,
+        });
+      } else {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: res.message,
+        });
+      }
+    });
   }
 
   private _initForm() {
