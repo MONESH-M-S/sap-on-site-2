@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@service/auth/auth.service';
+import { MentorService } from '@service/mentor/mentor.service';
 import { UserService } from '@service/user/user.service';
 import { MessageService } from 'primeng/api';
 import { DepartmentData } from 'src/app/data/department.data';
-import { MentorData } from 'src/app/data/mentor.data';
 
 @Component({
   selector: 'app-signup',
@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
   imageDisplay =
     'assets/images/streamlinehq-avatar-neutral-frame-add-users-400.png';
   year = ['1st year', '2nd year', '3rd year', '4th year'];
-  availaleMentors = MentorData.exportClass();
+  availaleMentors = [];
   availableDepartments = DepartmentData.exportClass();
   //userDetail: User;
   userDetail: any;
@@ -31,7 +31,8 @@ export class SignupComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private mentorService: MentorService
   ) {}
 
   ngOnInit(): void {
@@ -59,6 +60,9 @@ export class SignupComponent implements OnInit {
         this.editMode = false;
       }
     });
+    this.mentorService.getMentors().subscribe((res)=>{
+      this.availaleMentors = res
+    })
   }
 
   onUpload(event: any) {
