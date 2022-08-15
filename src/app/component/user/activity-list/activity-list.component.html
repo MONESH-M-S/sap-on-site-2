@@ -1,3 +1,4 @@
+<p-confirmPopup></p-confirmPopup>
 <section>
   <div *ngIf="userActivity.length > 0" class="card hidden lg:block">
     <p-table
@@ -12,8 +13,8 @@
           <th pSortableColumn="mark" class="hidden xl:block">
             Mark <p-sortIcon field="mark"></p-sortIcon>
           </th>
-          <th pSortableColumn="uploadedTime" class="hidden xl:block">
-            Added On<p-sortIcon field="uploadedTime"></p-sortIcon>
+          <th pSortableColumn="createdAt" class="hidden xl:block">
+            Added On<p-sortIcon field="createdAt"></p-sortIcon>
           </th>
           <th>Cretificate</th>
           <th></th>
@@ -22,22 +23,18 @@
       <ng-template pTemplate="body" let-activity>
         <tr>
           <td>
-            {{ activity.eventName | titlecase }}
-            {{ activity.clubName | titlecase }}
-            {{ activity.courseName | titlecase }}
-          </td>
-          <td class="hidden xl:block">
-            {{ activity.mark }}
+            {{ activity?.event_name | titlecase }}
+            {{ activity?.club_name | titlecase }}
+            {{ activity?.course_name | titlecase }}
           </td>
           <td>
-            {{ activity.uploadedTime | date: "dd-MM-yyyy hh:mm" }}
+            {{ activity?.mark }}
           </td>
           <td>
-            <img
-              [src]="activity.image"
-              [width]="50"
-              alt="Cretificate"
-            />
+            {{ activity?.createdAt | date: "dd-MM-yyyy hh:mm" }}
+          </td>
+          <td>
+            <img [src]="activity?.image" [width]="40" alt="Cretificate" />
           </td>
           <td>
             <button
@@ -47,6 +44,7 @@
               icon="pi pi-eye"
               class="p-button-rounded p-button-info p-button-outlined mr-3"
               pTooltip="View Activity"
+              tooltipPosition="top"
             ></button>
             <button
               pButton
@@ -55,12 +53,13 @@
               icon="pi pi-pencil"
               class="p-button-rounded p-button-success p-button-outlined mr-3"
               pTooltip="Edit Activity"
+              tooltipPosition="top"
               [routerLink]="activity.type"
               [queryParams]="{
                 edit: true,
                 activityId: activity._id
               }"
-              *ngIf="activity.isLocked === false"
+              *ngIf="activity.is_locked === false"
             ></button>
             <button
               pButton
@@ -69,17 +68,19 @@
               icon="pi pi-trash"
               class="p-button-rounded p-button-danger p-button-outlined mr-3"
               pTooltip="Delete Activity"
-              *ngIf="activity.isLocked === false"
-              (click)="deleteActivity(activity._id)"
+              tooltipPosition="top"
+              *ngIf="activity.is_locked === false"
+              (click)="deleteActivity($event,activity._id)"
             ></button>
             <button
               pButton
               pRipple
               type="button"
               icon="pi pi-lock"
+              tooltipPosition="top"
               class="p-button-rounded p-button-help p-button-outlined mr-3"
               pTooltip="Activity is Locked by your Mentor"
-              *ngIf="activity.isLocked === true"
+              *ngIf="activity.is_locked === true"
             ></button>
           </td>
         </tr>

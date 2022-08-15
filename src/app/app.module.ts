@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from '@component/admin/admin.module';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +30,7 @@ import { ViewActivityModule } from '@page/view-activity/view-activity.module';
     ActivityModule,
     ViewActivityModule,
   ],
-  providers: [MessageService],
+  providers: [MessageService,ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

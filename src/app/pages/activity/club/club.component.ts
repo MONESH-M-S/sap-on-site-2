@@ -69,7 +69,7 @@ export class ClubComponent implements OnInit {
 
     this.activityService.uploadNewActivity(form).subscribe((res) => {
       this.isLoading = false;
-      if (res.activity) {
+      if (res.activity != null) {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
