@@ -44,6 +44,13 @@ export class ActivityService {
     );
   }
 
+  updateLockStatus(id: string, status: boolean) {
+    return this.http.put<{ success: boolean; message: string }>(
+      `${this.BACKEND_URL}activity/lock-status/${id}`,
+      { status: !status }
+    );
+  }
+
   deleteActivity(id: string) {
     return this.http.delete<{ success: boolean; message: string }>(
       `${this.BACKEND_URL}activity/${id}`

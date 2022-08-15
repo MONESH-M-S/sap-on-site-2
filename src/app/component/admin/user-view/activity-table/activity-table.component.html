@@ -1,4 +1,5 @@
 <p-toast></p-toast>
+<p-confirmPopup></p-confirmPopup>
 <section>
   <h2
     *ngIf="studentActivitiesList.length == 0"
@@ -50,6 +51,19 @@
               class="p-button-rounded p-button-help p-button-outlined mr-3"
               pTooltip="Lock Activity"
               tooltipPosition="top"
+              (click)="updateLockStatus(activity.id, activity.is_locked)"
+              *ngIf="!activity.is_locked"
+            ></button>
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-lock"
+              class="p-button-rounded p-button-help p-button-outlined mr-3"
+              pTooltip="Unlock Activity"
+              tooltipPosition="top"
+              (click)="updateLockStatus(activity.id, activity.is_locked)"
+              *ngIf="activity.is_locked"
             ></button>
             <button
               pButton
@@ -59,6 +73,7 @@
               class="p-button-rounded p-button-success p-button-outlined mr-3"
               pTooltip="Edit Activity"
               tooltipPosition="top"
+              *ngIf="!activity.is_locked"
             ></button>
             <button
               pButton
@@ -79,6 +94,7 @@
               pTooltip="Delete Activity"
               tooltipPosition="top"
               (click)="deleteActivity(activity.id)"
+              *ngIf="!activity.is_locked"
             ></button>
           </td>
         </tr>
