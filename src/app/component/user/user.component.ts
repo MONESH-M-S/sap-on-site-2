@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Mark } from '@models/mark';
+import { MarkService } from '@service/mark/mark.service';
 import { MessageService } from 'primeng/api';
 import { User } from 'src/app/models/user';
 
@@ -11,11 +13,15 @@ import { User } from 'src/app/models/user';
 export class UserComponent implements OnInit {
   userId!: string;
   userDetail!: User;
+  markDetail: Mark;
+  markNeeded: boolean = false;
+  totalMark: number;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private markService: MarkService
   ) {}
 
   ngOnInit(): void {
@@ -23,6 +29,17 @@ export class UserComponent implements OnInit {
       if (res.userData.user !== null) {
         this.userDetail = res.userData.user;
         this.userId = res.userData.user.id;
+        this.markService.getMarkByUserId(this.userId).subscribe((res) => {
+          if (res.mark != null) {
+            this.markDetail = res.mark[0];
+            this.totalMark = 100 - this.markDetail?.total;
+            if (this.totalMark <= 0) {
+              this.markNeeded = false;
+            } else {
+              this.markNeeded = true;
+            }
+          }
+        });
       } else {
         this.router.navigate(['/login']);
       }
