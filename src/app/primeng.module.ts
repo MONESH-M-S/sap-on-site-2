@@ -17,7 +17,8 @@ import { CardModule } from 'primeng/card';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
 import { InputSwitchModule } from 'primeng/inputswitch';
-import {ConfirmPopupModule} from 'primeng/confirmpopup';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   exports: [
@@ -38,7 +39,8 @@ import {ConfirmPopupModule} from 'primeng/confirmpopup';
     InputNumberModule,
     DialogModule,
     InputSwitchModule,
-    ConfirmPopupModule
+    ConfirmPopupModule,
+    ConfirmDialogModule,
   ],
 })
 export class PrimengModule {}

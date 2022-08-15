@@ -46,7 +46,7 @@ export interface Activity {
   examLevel?: string;
   activity_type: string;
   mark: number;
-  image: number;
+  image: string;
   id?: string;
   data_object: any;
   uploaderId?: string;

@@ -31,7 +31,7 @@
             {{ activity?.mark }}
           </td>
           <td>
-            {{ activity?.createdAt | date: "dd-MM-yyyy hh:mm" }}
+            {{ activity?.createdAt | date: "dd-MM-yyyy hh:mm a" }}
           </td>
           <td>
             <img [src]="activity?.image" [width]="40" alt="Cretificate" />
@@ -45,6 +45,7 @@
               class="p-button-rounded p-button-info p-button-outlined mr-3"
               pTooltip="View Activity"
               tooltipPosition="top"
+              (click)="viewActivity(activity.id)"
             ></button>
             <button
               pButton
@@ -57,7 +58,7 @@
               [routerLink]="activity.type"
               [queryParams]="{
                 edit: true,
-                activityId: activity._id
+                activityId: activity.id
               }"
               *ngIf="activity.is_locked === false"
             ></button>
@@ -70,7 +71,7 @@
               pTooltip="Delete Activity"
               tooltipPosition="top"
               *ngIf="activity.is_locked === false"
-              (click)="deleteActivity($event,activity._id)"
+              (click)="deleteActivity($event,activity.id)"
             ></button>
             <button
               pButton

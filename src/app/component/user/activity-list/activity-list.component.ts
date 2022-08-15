@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Activity } from '@models/activity';
 import { ActivityService } from '@service/activity/activity.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -11,22 +11,31 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class ActivityListComponent implements OnInit {
   userActivity?: Activity[] = [];
-  i;
+  userId: string;
+
   constructor(
     private activityService: ActivityService,
     private route: ActivatedRoute,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((res) => {
       if (res['id']) {
+        this.userId = res['id'];
         this.activityService.getUserActivityByUserId(res['id']);
         this.activityService.getUserUpdatedActivity().subscribe((res) => {
           this.userActivity = res;
         });
       }
+    });
+  }
+
+  viewActivity(id: string) {
+    this.router.navigate([`s/view-a/${id}`], {
+      queryParams: { userId: this.userId },
     });
   }
 

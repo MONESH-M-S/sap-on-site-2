@@ -13,6 +13,12 @@ export class ActivityService {
 
   constructor(private http: HttpClient) {}
 
+  getActivityById(id: string) {
+    return this.http.get<{ activity: Activity; message: string }>(
+      `${this.BACKEND_URL}activity/${id}`
+    );
+  }
+
   getUserActivityByUserId(id: string) {
     this.http
       .get<{ activities: Activity[]; message: string }>(

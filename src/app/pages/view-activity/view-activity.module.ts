@@ -5,7 +5,7 @@ import { PrimengModule } from 'src/app/primeng.module';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', children: [{ path: '', component: ViewActivityComponent }] },
+  { path: '', children: [{ path: ':id', component: ViewActivityComponent }] },
 ];
 
 @NgModule({
