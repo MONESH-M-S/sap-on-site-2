@@ -96,7 +96,7 @@ export class SignupComponent implements OnInit {
     user.append('rollNo', this.signupForm.value.rollno);
     user.append('department', this.signupForm.value.department);
     user.append('year', this.signupForm.value.year);
-    user.append('mentor', this.signupForm.value.mentor);
+    user.append('mentorId', this.signupForm.value.mentor);
     user.append('image', this.signupForm.value.image);
 
     this.authService.userSignup(user).subscribe((res) => {
@@ -145,7 +145,6 @@ export class SignupComponent implements OnInit {
   }
 
   private _initFormWithData() {
-    console.log(this.userDetail)
     if (this.editMode == true) {
       this.signupForm = this.formBuilder.group({
         name: [this.userDetail.name, [Validators.required]],
@@ -163,7 +162,7 @@ export class SignupComponent implements OnInit {
           Validators.compose([Validators.required, Validators.minLength(6)]),
         ],
         department: [this.userDetail.department, Validators.required],
-        mentor: [this.userDetail.mentor, Validators.required],
+        mentor: [this.userDetail.mentor_id, Validators.required],
         year: [this.userDetail.year, Validators.required],
       });
     }
