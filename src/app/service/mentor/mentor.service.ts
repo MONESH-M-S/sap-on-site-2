@@ -8,7 +8,7 @@ import { environment } from '@env/environment';
 export class MentorService {
   BACKEND_URL = environment.BACKEND_URL;
   mentors: any[] = [];
-  availableMentor = []
+  availableMentor = [];
 
   constructor(private http: HttpClient) {}
 
@@ -26,7 +26,17 @@ export class MentorService {
     );
   }
 
-  getMentorStudentsByMentorId(id: string) {
-    
+  checkOldPassword(password: string, id: string) {
+    return this.http.post<{ confirmation: boolean; message: string }>(
+      `${this.BACKEND_URL}user/check-password/${id}`,
+      { password }
+    );
+  }
+
+  updatePassword(password: string, id: string) {
+    return this.http.put<{ updated: boolean; message: string }>(
+      `${this.BACKEND_URL}user/update-password/${id}`,
+      { password }
+    );
   }
 }
