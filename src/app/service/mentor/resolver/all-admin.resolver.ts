@@ -8,13 +8,13 @@ import {
 } from '@angular/router';
 import { environment } from '@env/environment';
 import { User } from '@models/user';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserResolver
-  implements Resolve<{ user: User | null; message: string }>
+export class AllAdminResolver
+  implements Resolve<{ users: User[] | null; message: string }>
 {
   BACKEND_URL = environment.BACKEND_URL;
   constructor(private http: HttpClient) {}
@@ -22,9 +22,9 @@ export class UserResolver
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<{ user: User | null; message: string }> {
-    return this.http.get<{ user: User | null; message: string }>(
-      `${this.BACKEND_URL}user/${route.params.id}`
+  ): Observable<{ users: User[] | null; message: string }> {
+    return this.http.get<{ users: User[] | null; message: string }>(
+      `${this.BACKEND_URL}user/mentors`
     );
   }
 }

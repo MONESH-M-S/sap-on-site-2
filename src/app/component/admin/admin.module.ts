@@ -9,11 +9,20 @@ import { ActivityTableComponent } from './user-view/activity-table/activity-tabl
 import { UserResolver } from '@service/user/resolver/user.resolver';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MentorResolver } from '@service/mentor/resolver/mentor.resolver';
+import { ShowAdminComponent } from './show-admin/show-admin.component';
+import { AllAdminResolver } from '@service/mentor/resolver/all-admin.resolver';
 
 const routes: Routes = [
   {
     path: '',
     children: [
+      {
+        path: 'show-all-m',
+        component: ShowAdminComponent,
+        resolve: {
+          mentors: AllAdminResolver,
+        },
+      },
       {
         path: ':id',
         component: AdminComponent,
@@ -34,13 +43,14 @@ const routes: Routes = [
     UserViewComponent,
     MarkTableComponent,
     ActivityTableComponent,
+    ShowAdminComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     PrimengModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
 })
 export class AdminModule {}

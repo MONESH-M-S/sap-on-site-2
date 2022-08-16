@@ -66,6 +66,7 @@ export class AdminComponent implements OnInit {
       this.isLoading = false;
       this.openAddAdminDialog = false;
       if (res.user != null) {
+        this.addMentorForm.reset()
         return this.messageService.add({
           severity: 'success',
           summary: 'Success',

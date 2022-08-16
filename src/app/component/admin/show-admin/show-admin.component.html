@@ -1,0 +1,54 @@
+<div class="m-5">
+  <p-card class="card">
+    <p-table
+      [value]="availableMentors"
+      rowGroupMode="rowspan"
+      groupRowsBy="deparment"
+      sortMode="single"
+      responsiveLayout="scroll"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 3rem">#</th>
+          <th pSortableColumn="deparment">
+            Department <p-sortIcon field="deparment"></p-sortIcon>
+          </th>
+          <th pSortableColumn="name">
+            Name <p-sortIcon field="name"></p-sortIcon>
+          </th>
+          <th>Added Admin</th>
+          <th pSortableColumn="createdAt">
+            Added At <p-sortIcon field="createdAt"></p-sortIcon>
+          </th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template
+        pTemplate="body"
+        let-admin
+        let-rowIndex="rowIndex"
+        let-rowgroup="rowgroup"
+        let-rowspan="rowspan"
+      >
+        <tr *ngIf="admin.name !== 'adminKec'">
+          <td>{{ rowIndex }}</td>
+          <td *ngIf="rowgroup" [attr.rowspan]="rowspan">
+            <span class="font-bold ml-2">
+              {{ admin?.department | uppercase }}
+            </span>
+          </td>
+          <td>
+            {{ admin?.name | titlecase }}
+          </td>
+          <td>{{ admin?.added_admin?.name | titlecase }}</td>
+          <td>{{ admin?.createdAt | date: "dd/MM/yy hh:mm a" }}</td>
+          <td>
+            <button>
+              
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+</div>
