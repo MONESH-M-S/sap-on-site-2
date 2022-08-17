@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ActivityService } from '@service/activity/activity.service';
+import { MarkService } from '@service/mark/mark.service';
+import { MessageService } from 'primeng/api';
 import { PaperMarkData } from './data/paper-mark.data';
 
 @Component({
@@ -15,12 +19,24 @@ export class PaperComponent implements OnInit {
   isPrizeWon: boolean = false;
   imageDisplay?: string;
   isLoading: boolean = false;
-  data: { label: string; prize: boolean; mark: number }; 
+  data: any;
+  id: string;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private messageService: MessageService,
+    private activityService: ActivityService,
+    private route: ActivatedRoute,
+    private markService: MarkService
+  ) {}
 
   ngOnInit(): void {
     this._initForm();
+    this.route.queryParams.subscribe((res) => {
+      if (res.userId) {
+        this.id = res.userId;
+      }
+    });
   }
 
   onPositionChange(event: any) {
@@ -50,7 +66,52 @@ export class PaperComponent implements OnInit {
     this.isLoading = true;
     if (this.paperForm.invalid) return;
 
-    console.log(this.paperForm.value);
+    this.data = this.paperForm.get('position').value;
+
+    const form = new FormData();
+    form.append('eventName', this.paperForm.value.eventName);
+    form.append('eventVenue', this.paperForm.value.eventVenue);
+    form.append('title', this.paperForm.value.title);
+    form.append('type', this.paperForm.value.type);
+    form.append('eventDate', this.paperForm.value.eventDate);
+    form.append('eventMode', this.paperForm.value.eventMode);
+    form.append('position', this.paperForm.value.position.label);
+    form.append('prizeAmount', this.paperForm.value.prizeAmount);
+    form.append('image', this.paperForm.value.image);
+    form.append('mark', this.paperForm.value.mark);
+    form.append('activityType', 'paper');
+    form.append('label', this.data.label);
+    form.append('prize', this.data.prize);
+    form.append('uploaderId', this.id);
+
+    this.activityService.uploadNewActivity(form).subscribe((res) => {
+      this.isLoading = false;
+      if (res.activity != null) {
+        this.markService
+          .updateMark(this.id, this.paperForm.value.mark, 'paper')
+          .subscribe((res) => {
+            if (res.success) {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Activity Saved, ' + res.message,
+              });
+            } else {
+              this.messageService.add({
+                severity: 'warn',
+                summary: 'Warning',
+                detail: 'Activity Saved, ' + res.message,
+              });
+            }
+          });
+      } else {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: res.message,
+        });
+      }
+    });
   }
 
   private _initForm() {

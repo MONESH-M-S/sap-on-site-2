@@ -54,7 +54,7 @@ export class ViewActivityComponent implements OnInit {
               });
               setTimeout(() => {
                 this.location.back();
-              }, 3000);
+              }, 2100);
             } else {
               this.messageService.add({
                 severity: 'error',

@@ -38,9 +38,35 @@
             <div class="text-500 font-medium mb-2">Event Venue</div>
             <div class="text-900">{{ activityDetial?.event_venue }}</div>
           </div>
+          <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.event_date">
+            <div class="text-500 font-medium mb-2">Event Date</div>
+            <div class="text-900">
+              {{ activityDetial?.event_date | date: "dd-MM-yy" }}
+            </div>
+          </div>
+          <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.title">
+            <div class="text-500 font-medium mb-2">Title</div>
+            <div class="text-900">{{ activityDetial?.title }}</div>
+          </div>
           <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.position">
             <div class="text-500 font-medium mb-2">Position</div>
             <div class="text-900">{{ activityDetial?.position }}</div>
+          </div>
+          <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.prize_amount">
+            <div class="text-500 font-medium mb-2">Prize Amount</div>
+            <div class="text-900">{{ activityDetial?.prize_amount }}</div>
+          </div>
+          <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.mode">
+            <div class="text-500 font-medium mb-2">Mode</div>
+            <div class="text-900">{{ activityDetial?.mode }}</div>
+          </div>
+          <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.event_mode">
+            <div class="text-500 font-medium mb-2">Event Mode</div>
+            <div class="text-900">{{ activityDetial?.event_mode }}</div>
+          </div>
+          <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.type">
+            <div class="text-500 font-medium mb-2">Type</div>
+            <div class="text-900">{{ activityDetial?.type }}</div>
           </div>
           <div class="col-12 md:col-4 p-3">
             <div class="text-500 font-medium mb-2">Mark</div>
