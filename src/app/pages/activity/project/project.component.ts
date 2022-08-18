@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ActivityService } from '@service/activity/activity.service';
+import { MarkService } from '@service/mark/mark.service';
+import { MessageService } from 'primeng/api';
 import { ProjectMarkData } from './data/project-mark.data';
 
 @Component({
@@ -15,12 +19,24 @@ export class ProjectComponent implements OnInit {
   isPrizeWon: boolean = false;
   imageDisplay?: string;
   isLoading: boolean = false;
-  data: { label: string; prize: boolean; mark: number };
+  data: any;
+  id: string;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private activityService: ActivityService,
+    private markService: MarkService,
+    private messageService: MessageService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this._initForm();
+    this.route.queryParams.subscribe((res) => {
+      if (res.userId) {
+        this.id = res.userId;
+      }
+    });
   }
 
   onPositionChange(event: any) {
@@ -50,7 +66,52 @@ export class ProjectComponent implements OnInit {
     this.isLoading = true;
     if (this.projectForm.invalid) return;
 
-    console.log(this.projectForm.value);
+    this.data = this.projectForm.get('position').value;
+
+    const form = new FormData();
+    form.append('eventName', this.projectForm.value.eventName);
+    form.append('eventVenue', this.projectForm.value.eventVenue);
+    form.append('title', this.projectForm.value.title);
+    form.append('type', this.projectForm.value.type);
+    form.append('eventDate', this.projectForm.value.eventDate);
+    form.append('eventMode', this.projectForm.value.eventMode);
+    form.append('position', this.projectForm.value.position.label);
+    form.append('prizeAmount', this.projectForm.value.prizeAmount);
+    form.append('image', this.projectForm.value.image);
+    form.append('mark', this.projectForm.value.mark);
+    form.append('activityType', 'project');
+    form.append('label', this.data.label);
+    form.append('prize', this.data.prize);
+    form.append('uploaderId', this.id);
+
+    this.activityService.uploadNewActivity(form).subscribe((res) => {
+      this.isLoading = false;
+      if (res.activity != null) {
+        this.markService
+          .updateMark(this.id, this.projectForm.value.mark, 'project')
+          .subscribe((res) => {
+            if (res.success) {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Activity Saved, ' + res.message,
+              });
+            } else {
+              this.messageService.add({
+                severity: 'warn',
+                summary: 'Warning',
+                detail: 'Activity Saved, ' + res.message,
+              });
+            }
+          });
+      } else {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: res.message,
+        });
+      }
+    });
   }
 
   private _initForm() {

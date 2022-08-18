@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActivityService } from '@service/activity/activity.service';
+import { MarkService } from '@service/mark/mark.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
@@ -12,6 +13,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 export class ViewActivityComponent implements OnInit {
   activityDetial: any;
   activityId: string;
+  studentId: string;
   imageName: string;
 
   constructor(
@@ -20,7 +22,8 @@ export class ViewActivityComponent implements OnInit {
     private router: Router,
     private activityService: ActivityService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private markService: MarkService
   ) {}
 
   ngOnInit(): void {
@@ -47,14 +50,24 @@ export class ViewActivityComponent implements OnInit {
           .deleteActivity(this.activityId)
           .subscribe((res) => {
             if (res.success) {
-              this.messageService.add({
-                severity: 'success',
-                summary: 'Success',
-                detail: res.message + ' You, will be navigate to back!',
-              });
-              setTimeout(() => {
-                this.location.back();
-              }, 2100);
+              this.markService
+                .updateMark(
+                  res.activity.uploader_id,
+                  -res.activity.mark,
+                  res.activity.activity_type
+                )
+                .subscribe((result) => {
+                  if (result.success) {
+                    this.messageService.add({
+                      severity: 'success',
+                      summary: 'Success',
+                      detail: res.message + ' You, will be navigate to back!',
+                    });
+                    setTimeout(() => {
+                      this.location.back();
+                    }, 2100);
+                  }
+                });
             } else {
               this.messageService.add({
                 severity: 'error',

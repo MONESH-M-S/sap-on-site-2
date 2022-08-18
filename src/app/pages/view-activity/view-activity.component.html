@@ -25,7 +25,7 @@
             </div>
           </div>
         </div>
-        <div class="grid grid-nogutter border-top-1 surface-border pt-2">
+        <div class="grid grid-nogutter border-top-2 surface-border mt-2">
           <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.event_name">
             <div class="text-500 font-medium mb-2">Event Name</div>
             <div class="text-900">{{ activityDetial?.event_name }}</div>
@@ -111,7 +111,7 @@
                 pRipple
                 type="button"
                 label="Edit Activity"
-                class="p-button-raised p-button-success mx-2"
+                class="p-button-raised p-button-success mx-2 hidden lg:block"
                 icon="pi pi-pencil"
                 *ngIf="!activityDetial?.is_locked"
               ></button>
@@ -130,7 +130,7 @@
                 pRipple
                 type="button"
                 label="Activity Locked"
-                class="p-button-raised p-button-help mx-2"
+                class="p-button-raised p-button-help mx-2 hidden lg:block"
                 icon="pi pi-lock"
                 *ngIf="activityDetial?.is_locked"
               ></button>

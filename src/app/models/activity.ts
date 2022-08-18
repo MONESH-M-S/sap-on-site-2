@@ -52,4 +52,5 @@ export interface Activity {
   uploaderId?: string;
   isLocked?: boolean;
   uploadedTime?: string;
+  uploader_id: string;
 }
