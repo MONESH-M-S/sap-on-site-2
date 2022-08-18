@@ -26,6 +26,17 @@
           </div>
         </div>
         <div class="grid grid-nogutter border-top-2 surface-border mt-2">
+          <div
+            class="col-12 p-3 text-center"
+            *ngIf="activityDetial?.activity_type"
+          >
+            <div class="text-700 font-medium mb-2">
+              Activity Type =
+              <span class="text-900">
+                {{ activityDetial?.activity_type | titlecase }}
+              </span>
+            </div>
+          </div>
           <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.event_name">
             <div class="text-500 font-medium mb-2">Event Name</div>
             <div class="text-900">
@@ -80,6 +91,24 @@
             <div class="text-500 font-medium mb-2">Event Venue</div>
             <div class="text-900">
               {{ activityDetial?.event_venue | titlecase }}
+            </div>
+          </div>
+          <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.exam_name">
+            <div class="text-500 font-medium mb-2">Exam Name</div>
+            <div class="text-900">
+              {{ activityDetial?.exam_name | titlecase }}
+            </div>
+          </div>
+          <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.exam_venue">
+            <div class="text-500 font-medium mb-2">Exam Venue</div>
+            <div class="text-900">
+              {{ activityDetial?.exam_venue | titlecase }}
+            </div>
+          </div>
+          <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.exam_level">
+            <div class="text-500 font-medium mb-2">Exam Level</div>
+            <div class="text-900">
+              {{ activityDetial?.exam_level }}
             </div>
           </div>
           <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.event_date">

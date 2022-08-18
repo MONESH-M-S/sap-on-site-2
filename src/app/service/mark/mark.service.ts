@@ -16,7 +16,7 @@ const ACTIVITIES = {
   gate_govt_exam: 0,
   placement_intern: 0,
   entrepreneurship: 0,
-  voluntary: 5,
+  voluntary: 0,
   nptel: 0,
   nss_ncc: 0,
 };
@@ -48,8 +48,6 @@ export class MarkService {
   updateMark(id: string, mark: number, activity: string) {
     ACTIVITIES[activity] = mark;
     ACTIVITIES['mark'] = mark;
-
-    console.log(ACTIVITIES);
 
     return this.http
       .put<{ success: boolean; message: string }>(

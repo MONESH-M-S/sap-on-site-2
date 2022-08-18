@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ActivityService } from '@service/activity/activity.service';
+import { MarkService } from '@service/mark/mark.service';
+import { MessageService } from 'primeng/api';
 import { GovtExamMarkData } from './data/govt-exam-mark.data';
 
 @Component({
@@ -12,12 +16,24 @@ export class GovtExamComponent implements OnInit {
   imageDisplay?: string;
   availableType = GovtExamMarkData.exportClass();
   isLoading: boolean = false;
-  data: { label: string; mark: number };
+  data: any;
+  id: string;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private messageService: MessageService,
+    private activityService: ActivityService,
+    private route: ActivatedRoute,
+    private markService: MarkService
+  ) {}
 
   ngOnInit(): void {
     this._initForm();
+    this.route.queryParams.subscribe((res) => {
+      if (res.userId) {
+        this.id = res.userId;
+      }
+    });
   }
 
   onImageUpload(event: any) {
@@ -35,7 +51,47 @@ export class GovtExamComponent implements OnInit {
     this.isLoading = true;
     if (this.govtForm.invalid) return;
 
-    console.log(this.govtForm.value);
+    this.data = this.govtForm.get('examLevel').value;
+
+    const form = new FormData();
+    form.append('examName', this.govtForm.value.examName);
+    form.append('examVenue', this.govtForm.value.examVenue);
+    form.append('examLevel', this.govtForm.value.examLevel.label);
+    form.append('eventDate', this.govtForm.value.eventDate);
+    form.append('image', this.govtForm.value.image);
+    form.append('mark', this.govtForm.value.mark);
+    form.append('activityType', 'gate_govt_exam');
+    form.append('label', this.data.label);
+    form.append('uploaderId', this.id);
+
+    this.activityService.uploadNewActivity(form).subscribe((res) => {
+      this.isLoading = false;
+      if (res.activity != null) {
+        this.markService
+          .updateMark(this.id, this.govtForm.value.mark, 'gate_govt_exam')
+          .subscribe((res) => {
+            if (res.success) {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Activity Saved, ' + res.message,
+              });
+            } else {
+              this.messageService.add({
+                severity: 'warn',
+                summary: 'Warning',
+                detail: 'Activity Saved, ' + res.message,
+              });
+            }
+          });
+      } else {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: res.message,
+        });
+      }
+    });
   }
 
   onTypeChanged(event: any) {
