@@ -18,7 +18,8 @@ export class MarkTableComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((res) => {
       if (res['id']) {
-        this.markService.getMarkByUserId(res['id']).subscribe((res) => {
+        this.markService.getMarkByUserId(res['id']);
+        this.markService.getUpdatedMark().subscribe((res) => {
           Object.keys(res.mark[0]).forEach((key) => {
             if (
               key == '_id' ||

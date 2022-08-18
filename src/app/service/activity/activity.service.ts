@@ -52,8 +52,10 @@ export class ActivityService {
   }
 
   deleteActivity(id: string) {
-    return this.http.delete<{ success: boolean; message: string }>(
-      `${this.BACKEND_URL}activity/${id}`
-    );
+    return this.http.delete<{
+      success: boolean;
+      activity: Activity;
+      message: string;
+    }>(`${this.BACKEND_URL}activity/${id}`);
   }
 }

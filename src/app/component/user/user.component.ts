@@ -29,7 +29,8 @@ export class UserComponent implements OnInit {
       if (res.userData.user !== null) {
         this.userDetail = res.userData.user;
         this.userId = res.userData.user.id;
-        this.markService.getMarkByUserId(this.userId).subscribe((res) => {
+        this.markService.getMarkByUserId(this.userId);
+        this.markService.getUpdatedMark().subscribe((res) => {
           if (res.mark != null) {
             this.markDetail = res.mark[0];
             this.totalMark = 100 - this.markDetail?.total;

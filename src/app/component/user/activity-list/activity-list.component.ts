@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Activity } from '@models/activity';
 import { ActivityService } from '@service/activity/activity.service';
+import { MarkService } from '@service/mark/mark.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
@@ -18,7 +19,8 @@ export class ActivityListComponent implements OnInit {
     private route: ActivatedRoute,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private router: Router
+    private router: Router,
+    private markService: MarkService
   ) {}
 
   ngOnInit(): void {
@@ -46,12 +48,29 @@ export class ActivityListComponent implements OnInit {
       accept: () => {
         this.activityService.deleteActivity(id).subscribe((res) => {
           if (res.success) {
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Success',
-              detail: res.message,
-            });
-            this.activityService.getUserActivityByUserId(id);
+            this.activityService.getUserActivityByUserId(this.userId);
+            this.markService
+              .updateMark(
+                this.userId,
+                -res.activity.mark,
+                res.activity.activity_type
+              )
+              .subscribe((result) => {
+                if (result.success) {
+                  this.markService.getMarkByUserId(this.userId);
+                  this.messageService.add({
+                    severity: 'success',
+                    summary: 'Success',
+                    detail: res.message,
+                  });
+                } else {
+                  this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: res.message,
+                  });
+                }
+              });
           } else {
             this.messageService.add({
               severity: 'error',

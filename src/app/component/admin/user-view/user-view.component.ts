@@ -30,7 +30,8 @@ export class UserViewComponent implements OnInit {
       if (res.userData.user != null) {
         this.studentDetail = res.userData.user;
         this.studentId = res.userData.user.id;
-        this.markService.getMarkByUserId(this.studentId).subscribe((res) => {
+        this.markService.getMarkByUserId(this.studentId);
+        this.markService.getUpdatedMark().subscribe((res) => {
           if (res.mark != null) {
             this.markDetails = res.mark[0];
             this.totalMark = 100 - this.markDetails?.total;

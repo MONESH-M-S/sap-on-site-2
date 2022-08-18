@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { Mark } from '@models/mark';
-import { tap } from 'rxjs';
+import { Subject, tap } from 'rxjs';
 
 const ACTIVITIES = {
   mark: 0,
@@ -26,12 +26,23 @@ const ACTIVITIES = {
 })
 export class MarkService {
   BACKEND_URL = environment.BACKEND_URL;
+  studentMark: Subject<{ mark: Mark }> = new Subject<{ mark: Mark }>();
   constructor(private http: HttpClient) {}
 
   getMarkByUserId(id: string) {
-    return this.http.get<{ mark: Mark; message: string }>(
-      `${this.BACKEND_URL}mark/user-id/${id}`
-    );
+    this.http
+      .get<{ mark: Mark; message: string }>(
+        `${this.BACKEND_URL}mark/user-id/${id}`
+      )
+      .subscribe((res) => {
+        if (res.mark != null) {
+          this.studentMark.next({ mark: res.mark });
+        }
+      });
+  }
+
+  getUpdatedMark() {
+    return this.studentMark.asObservable();
   }
 
   updateMark(id: string, mark: number, activity: string) {
