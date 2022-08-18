@@ -18,10 +18,10 @@ export class MentorService {
 
   addAdmin(name: string, id: string, dept: string) {
     return this.http.put<{ message: string }>(
-      `${this.BACKEND_URL}available-mentors/${dept}`,
+      `${this.BACKEND_URL}available-mentors/${dept.toUpperCase()}`,
       {
-        name,
-        id,
+        name: name,
+        id: id,
       }
     );
   }

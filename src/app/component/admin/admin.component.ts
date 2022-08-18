@@ -38,7 +38,7 @@ export class AdminComponent implements OnInit {
         this.mentorDetail = res.userData.user;
         this.id = res.userData.user.id;
       }
-      if (res.availableStudents.users.length > 0) {
+      if (res.availableStudents.users) {
         this.availableStudents = res.availableStudents.users;
       }
     });
@@ -66,12 +66,25 @@ export class AdminComponent implements OnInit {
       this.isLoading = false;
       this.openAddAdminDialog = false;
       if (res.user != null) {
-        this.addMentorForm.reset()
-        return this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: `Admin '${res.user.name}' added successfully!`,
-        });
+        this.addMentorForm.reset();
+        this.mentorService
+          .addAdmin(res.user.name, res.user.id, res.user.department)
+          .subscribe((result) => {
+            if (result.message == 'Mentor Updated!') {
+              console.log(result);
+              return this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail: `Admin '${res.user.name}' added successfully!`,
+              });
+            } else {
+              return this.messageService.add({
+                severity: 'warn',
+                summary: 'Warning',
+                detail: `Admin '${res.user.name}' added, but not updated (Contact admin)!`,
+              });
+            }
+          });
       } else {
         return this.messageService.add({
           severity: 'error',
