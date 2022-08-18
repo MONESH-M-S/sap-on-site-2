@@ -1,10 +1,16 @@
 <p-confirmPopup></p-confirmPopup>
+<h2 *ngIf="userActivity.length == 0" class="text-center mt-5">
+  No Activity Uploaded by you, Till Now!
+</h2>
+<h3 class="text-center mt-3">
+  Number of Activities Uploaded - {{ userActivity.length }}
+</h3>
 <section>
   <div *ngIf="userActivity.length > 0" class="card hidden lg:block">
     <p-table
       [value]="userActivity"
       [scrollable]="true"
-      scrollHeight="450px"
+      scrollHeight="420px"
       styleClass="p-datatable-gridlines"
     >
       <ng-template pTemplate="header">
