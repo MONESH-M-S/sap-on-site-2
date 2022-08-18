@@ -15,7 +15,7 @@ const ACTIVITIES = {
   project_to_paper: 0,
   gate_govt_exam: 0,
   placement_intern: 0,
-  entreprenurship: 0,
+  entrepreneurship: 0,
   voluntary: 5,
   nptel: 0,
   nss_ncc: 0,

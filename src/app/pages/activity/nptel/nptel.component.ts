@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ActivityService } from '@service/activity/activity.service';
+import { MarkService } from '@service/mark/mark.service';
+import { MessageService } from 'primeng/api';
 import { NptelMarkData } from './data/nptel-data.mark';
 
 @Component({
@@ -10,16 +14,27 @@ import { NptelMarkData } from './data/nptel-data.mark';
 export class NptelComponent implements OnInit {
   nptelForm: FormGroup;
   imageDisplay?: string;
-  courseDuration = ['4 week', '8 week', '12 week'];
   type = ['Yes', 'No'];
   availableCredit = NptelMarkData.exportClass();
   isLoading: boolean = false;
-  data: { label: string; mark: number };
+  data: any;
+  id: string;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private messageService: MessageService,
+    private activityService: ActivityService,
+    private route: ActivatedRoute,
+    private markService: MarkService
+  ) {}
 
   ngOnInit(): void {
     this._initForm();
+    this.route.queryParams.subscribe((res) => {
+      if (res.userId) {
+        this.id = res.userId;
+      }
+    });
   }
 
   onImageUpload(event: any) {
@@ -37,7 +52,50 @@ export class NptelComponent implements OnInit {
     this.isLoading = true;
     if (this.nptelForm.invalid) return;
 
-    console.log(this.nptelForm.value);
+    this.data = this.nptelForm.get('credit').value;
+
+    const form = new FormData();
+    form.append('registraionNumber', this.nptelForm.value.registraionNumber);
+    form.append('courseCode', this.nptelForm.value.courseCode);
+    form.append('courseName', this.nptelForm.value.courseName);
+    form.append('hostInstitution', this.nptelForm.value.hostInstitution);
+    form.append('organizationName', this.nptelForm.value.organizationName);
+    form.append('creditTransfer', this.nptelForm.value.creditTransfer);
+    form.append('credit', this.nptelForm.value.credit.label);
+    form.append('image', this.nptelForm.value.image);
+    form.append('mark', this.nptelForm.value.mark);
+    form.append('activityType', 'nptel');
+    form.append('label', this.data.label);
+    form.append('uploaderId', this.id);
+
+    this.activityService.uploadNewActivity(form).subscribe((res) => {
+      this.isLoading = false;
+      if (res.activity != null) {
+        this.markService
+          .updateMark(this.id, this.nptelForm.value.mark, 'nptel')
+          .subscribe((res) => {
+            if (res.success) {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Activity Saved, ' + res.message,
+              });
+            } else {
+              this.messageService.add({
+                severity: 'warn',
+                summary: 'Warning',
+                detail: 'Activity Saved, ' + res.message,
+              });
+            }
+          });
+      } else {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: res.message,
+        });
+      }
+    });
   }
 
   onCreditChanged(event: any) {

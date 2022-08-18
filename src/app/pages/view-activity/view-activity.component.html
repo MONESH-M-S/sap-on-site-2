@@ -32,6 +32,44 @@
               {{ activityDetial?.event_name | titlecase }}
             </div>
           </div>
+          <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.course_name">
+            <div class="text-500 font-medium mb-2">Course Name</div>
+            <div class="text-900">
+              {{ activityDetial?.course_name | titlecase }}
+            </div>
+          </div>
+          <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.course_code">
+            <div class="text-500 font-medium mb-2">Course Code</div>
+            <div class="text-900">
+              {{ activityDetial?.course_code | titlecase }}
+            </div>
+          </div>
+          <div
+            class="col-12 md:col-4 p-3"
+            *ngIf="activityDetial?.organization_name"
+          >
+            <div class="text-500 font-medium mb-2">Organization Name</div>
+            <div class="text-900">
+              {{ activityDetial?.organization_name | titlecase }}
+            </div>
+          </div>
+          <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.credit">
+            <div class="text-500 font-medium mb-2">Credit</div>
+            <div class="text-900">
+              {{ activityDetial?.credit | titlecase }}
+            </div>
+          </div>
+          <div
+            class="col-12 md:col-4 p-3"
+            *ngIf="activityDetial?.credit_transfer"
+          >
+            <div class="text-500 font-medium mb-2">
+              Appling For Credit Transfer
+            </div>
+            <div class="text-900">
+              {{ activityDetial?.credit_transfer | uppercase }}
+            </div>
+          </div>
           <div class="col-12 md:col-4 p-3" *ngIf="activityDetial?.club_name">
             <div class="text-500 font-medium mb-2">Club Name</div>
             <div class="text-900">
