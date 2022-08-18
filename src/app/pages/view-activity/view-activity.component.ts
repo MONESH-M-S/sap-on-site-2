@@ -15,6 +15,7 @@ export class ViewActivityComponent implements OnInit {
   activityId: string;
   studentId: string;
   imageName: string;
+  date?: any[];
 
   constructor(
     public location: Location,
@@ -32,6 +33,11 @@ export class ViewActivityComponent implements OnInit {
       this.activityService.getActivityById(res['id']).subscribe((res) => {
         if (res.activity != null) {
           this.activityDetial = res.activity;
+          if (this.activityDetial?.event_date_range) {
+            this.date = this.activityDetial.event_date_range.split(',');
+            this.date[0] = new Date(this.date[0]);
+            this.date[1] = new Date(this.date[1]);
+          }
           const arr = res.activity?.image.split('/');
           this.imageName = arr[arr.length - 1];
         } else {

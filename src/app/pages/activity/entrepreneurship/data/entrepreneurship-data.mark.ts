@@ -1,6 +1,6 @@
 export class EntrepreneurshipMarkData {
   static availaleEntrepreneurshipTypesWithMarks = [
-    { label: 'Workshop Attended', mark: 5 },
+    { label: 'Workshop Attended', mark: 10 },
     { label: 'Registered for startup', mark: 50 },
     { label: 'Released Product', mark: 100 },
   ];
